@@ -1,0 +1,43 @@
+{
+  "name": "chaindriver",
+  "version": "0.1.0",
+  "description": "Stable testing framework out of the box",
+  "scripts": {
+    "postinstall": "webdriver-manager update",
+    "test": "protractor"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marketionist/chaindriver"
+  },
+  "keywords": [
+    "angular",
+    "automated tests",
+    "chaindriver",
+    "test",
+    "testing",
+    "webdriver",
+    "webdriverjs",
+    "selenium",
+    "protractor",
+    "protractor-framework",
+    "cucumber",
+    "cucumber-js",
+    "gherkin",
+    "bdd"
+  ],
+  "author": "Dmytro Shpakovskyi",
+  "license": "MIT",
+
+  "dependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.2.0",
+    "cucumber": "^1.0.0",
+    "gulp": "3.9.1",
+    "gulp-eslint": "^2.1.0",
+    "gulp-protractor": "2.4.0",
+    "httpster": "^1.0.1",
+    "protractor": "^4.0.10",
+    "protractor-cucumber-framework": "^0.6.0"
+  }
+}
