@@ -5,7 +5,9 @@ module.exports = (function () {
     var testPage = {
 
         mainURL: 'http://maxcabrera.com/code/todo-list/',
-        textError: '.x-window-header-text'
+        textError: '//*[ancestor::*[@class="todo-container"' +
+            ' and descendant::*[text()="New"]] and @type="checkbox"]',
+        linkBack: 'a[href="http://maxcabrera.com/"]'
 
     };
 
