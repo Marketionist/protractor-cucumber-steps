@@ -212,7 +212,7 @@ module.exports = {
         // Legacy
         "max-depth": [2, 4],
         "max-len": [2, 120],
-        "max-params": [2, 3],
+        "max-params": [2, 5],
         "max-statements": 0,
         "no-bitwise": 2,
         "no-plusplus": 0
