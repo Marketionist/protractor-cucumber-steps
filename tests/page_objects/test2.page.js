@@ -2,7 +2,7 @@
 
 module.exports = (function () {
 
-    var test2Page = {
+    let test2Page = {
 
         mainURL: 'http://www.google.com/ncr'
 
