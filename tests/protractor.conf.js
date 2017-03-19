@@ -1,7 +1,5 @@
 'use strict';
 
-let protractor = require('protractor');
-
 module.exports.config = {
     useAllAngular2AppRoots: true,
     directConnect: true,
@@ -31,6 +29,7 @@ module.exports.config = {
 
     // Custom parameters can be specified here
     params: {
+        // Path to file with all page objects
         pageObjects: require('./page_objects/index.js'),
         // Custom timeout to wait for elements on the page
         customTimeout: 5000,
@@ -76,8 +75,8 @@ module.exports.config = {
             onPrepare: function () {
                 // If you need to navigate to a page which does not use Angular,
                 // you can turn off waiting for Angular
-                global.EC = protractor.ExpectedConditions;
                 // browser.ignoreSynchronization = true;
+
                 // Set custom window size for browser
                 browser.driver.manage().window().setSize(
                     browser.params.browserConfig.width,
