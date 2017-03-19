@@ -11,7 +11,7 @@ module.exports.config = {
     // Path relative to the current config file
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
-    // Require feature files
+    // Spec patterns are relative to this directory
     specs: [
         'specs/**/*.feature' // accepts a glob
     ],
@@ -20,7 +20,7 @@ module.exports.config = {
         require: [
             'step_definitions/**/*.js', // accepts a glob
             '../index.js',
-            '../node_modules/.bin/chaindriver/index.js'
+            '../node_modules/.bin/protractor-cucumber-steps/index.js'
         ]
     },
     // Time of retries looking for angular exceeded - timeout in milliseconds
@@ -79,10 +79,10 @@ module.exports.config = {
                 global.EC = protractor.ExpectedConditions;
                 // browser.ignoreSynchronization = true;
                 // Set custom window size for browser
-                // browser.driver.manage().window().setSize(
-                //     browser.params.browserConfig.width,
-                //     browser.params.browserConfig.height
-                // );
+                browser.driver.manage().window().setSize(
+                    browser.params.browserConfig.width,
+                    browser.params.browserConfig.height
+                );
             }
         }
     }]
