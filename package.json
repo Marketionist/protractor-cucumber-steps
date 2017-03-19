@@ -1,43 +1,43 @@
 {
-  "name": "chaindriver",
-  "version": "0.1.0",
-  "description": "Stable testing framework out of the box",
+  "name": "protractor-cucumber-steps",
+  "version": "0.2.0",
+  "description": "Cucumber step definitions for Protractor tests",
+  "main": "index.js",
+  "engines": {
+    "node": ">=6.9.x"
+  },
   "scripts": {
     "postinstall": "webdriver-manager update",
-    "test": "protractor"
+    "lint": "node_modules/.bin/eslint *.js tests/**/*.js",
+    "test": "protractor tests/protractor.conf.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Marketionist/chaindriver"
+    "url": "https://github.com/Marketionist/protractor-cucumber-steps"
   },
   "keywords": [
-    "angular",
-    "automated tests",
-    "chaindriver",
+    "protractor-cucumber-steps",
+    "protractor plugin",
     "test",
     "testing",
+    "automated tests",
     "webdriver",
     "webdriverjs",
     "selenium",
     "protractor",
-    "protractor-framework",
     "cucumber",
-    "cucumber-js",
+    "cucumberjs",
     "gherkin",
     "bdd"
   ],
   "author": "Dmytro Shpakovskyi",
   "license": "MIT",
-
-  "dependencies": {
-    "chai": "^3.4.1",
-    "chai-as-promised": "^5.2.0",
-    "cucumber": "^1.0.0",
-    "gulp": "3.9.1",
-    "gulp-eslint": "^2.1.0",
-    "gulp-protractor": "2.4.0",
-    "httpster": "^1.0.1",
-    "protractor": "^4.0.10",
-    "protractor-cucumber-framework": "^0.6.0"
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "cucumber": "^1.3.0",
+    "eslint": "^3.17.1",
+    "protractor": "^5.1.1",
+    "protractor-cucumber-framework": "^1.0.1"
   }
 }

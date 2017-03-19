@@ -1,9 +1,15 @@
-module.exports = {
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
     "env": {
         "browser": true,
+        "es6": true,
         "node": true,
         "jquery": true,
-        "jasmine": true
+        "jasmine": true,
+        "protractor": true
     },
     "globals": {
         "$": true,
@@ -21,6 +27,7 @@ module.exports = {
         "spyOnEvent": true,
         "fixture": true,
         "pending": true,
+        "EC": true
     },
     "root": true,
     "ecmaFeatures": {
@@ -30,7 +37,7 @@ module.exports = {
         // Possible Errors
         "comma-dangle": [2, "never"],
         "no-cond-assign": 2,
-        "no-console": 1,
+        "no-console": 0,
         "no-constant-condition": 2,
         "no-control-regex": 2,
         "no-debugger": 2,
@@ -126,7 +133,7 @@ module.exports = {
         "yoda": [2, "never", { "exceptRange": true }],
 
         // Strict Mode
-        "strict": [2, "global"],
+        "strict": [0, "global"],
 
         // Variables
         "init-declarations": 0,
@@ -138,7 +145,7 @@ module.exports = {
         "no-undef-init": 2,
         "no-undef": 2,
         "no-undefined": 0,
-        "no-unused-vars": 2,
+        "no-unused-vars": 1,
         "no-use-before-define": 2,
 
         // Stylistic Issues
@@ -193,7 +200,7 @@ module.exports = {
         "quotes": [2, "single", "avoid-escape"],
         "require-jsdoc": 2,
         "semi-spacing": [2, {"before": false, "after": true}],
-        "semi": [2, "always"],
+        "semi": [0, "always"],
         "sort-vars": 0,
         "keyword-spacing": 2,
         "space-before-blocks": 2,
@@ -212,9 +219,9 @@ module.exports = {
         // Legacy
         "max-depth": [2, 4],
         "max-len": [2, 120],
-        "max-params": [2, 3],
+        "max-params": [2, 5],
         "max-statements": 0,
         "no-bitwise": 2,
         "no-plusplus": 0
     }
-};
+}
