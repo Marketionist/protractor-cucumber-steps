@@ -1,7 +1,7 @@
 {
-  "name": "chaindriver",
+  "name": "protractor-cucumber-steps",
   "version": "0.2.0",
-  "description": "Stable testing framework with Protractor and Cucumber steps ready to work out of the box",
+  "description": "Cucumber step definitions for Protractor tests",
   "main": "index.js",
   "engines": {
     "node": ">=6.9.x"
@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Marketionist/chaindriver"
+    "url": "https://github.com/Marketionist/protractor-cucumber-steps"
   },
   "keywords": [
-    "chaindriver",
+    "protractor-cucumber-steps",
     "protractor plugin",
     "test",
     "testing",
