@@ -1,6 +1,6 @@
 'use strict';
 /* global browser, expect, element, by, EC */
-/* eslint new-cap: 0 */  // --> OFF for Given, When, Then
+/* eslint no-magic-numbers: 1, new-cap: 0 */  // --> OFF for Given, When, Then
 
 /*
  * Created by marketionist on 13.11.2016
@@ -9,13 +9,17 @@
 
 // Use the external Chai As Promised to deal with resolving promises in
 // expectations
-let chai = require('chai');
-let chaiAsPromised = require('chai-as-promised');
-let fs = require('fs');
-let censor = require('./utils/helpers.js').censor;
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+const fs = require('fs');
+const protractor = require('protractor');
+const censor = require('./utils/helpers.js').censor;
 
 chai.use(chaiAsPromised);
 let expect = chai.expect;
+let EC = protractor.ExpectedConditions;
+let customTimeout = browser.params.customTimeout || 5000;
+let pageObjects = browser.params.pageObjects;
 
 module.exports = function () {
     /**
@@ -23,7 +27,7 @@ module.exports = function () {
      * @param {string} elementSelector
      */
     function waitForDisplayed(elementSelector) {
-        browser.wait(EC.presenceOf(elementSelector), browser.params.customTimeout,
+        browser.wait(EC.presenceOf(elementSelector), customTimeout,
             `${elementSelector} should be visible, but it\'s not`);
     }
 
@@ -35,14 +39,14 @@ module.exports = function () {
     });
 
     this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
-        let url = browser.params.pageObjects[page][elem];
+        let url = pageObjects[page][elem];
 
         browser.get(url);
         next();
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
-        let locator = browser.params.pageObjects[page][elem];
+        let locator = pageObjects[page][elem];
         let elmnt;
 
         if (locator[0] + locator[1] === '//') {

@@ -1,7 +1,5 @@
 'use strict';
 
-let protractor = require('protractor');
-
 module.exports.config = {
     useAllAngular2AppRoots: true,
     directConnect: true,
@@ -11,7 +9,7 @@ module.exports.config = {
     // Path relative to the current config file
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
-    // Require feature files
+    // Spec patterns are relative to this directory
     specs: [
         'specs/**/*.feature' // accepts a glob
     ],
@@ -20,7 +18,7 @@ module.exports.config = {
         require: [
             'step_definitions/**/*.js', // accepts a glob
             '../index.js',
-            '../node_modules/.bin/chaindriver/index.js'
+            '../node_modules/.bin/protractor-cucumber-steps/index.js'
         ]
     },
     // Time of retries looking for angular exceeded - timeout in milliseconds
@@ -31,6 +29,7 @@ module.exports.config = {
 
     // Custom parameters can be specified here
     params: {
+        // Path to file with all page objects
         pageObjects: require('./page_objects/index.js'),
         // Custom timeout to wait for elements on the page
         customTimeout: 5000,
@@ -76,13 +75,13 @@ module.exports.config = {
             onPrepare: function () {
                 // If you need to navigate to a page which does not use Angular,
                 // you can turn off waiting for Angular
-                global.EC = protractor.ExpectedConditions;
                 // browser.ignoreSynchronization = true;
+
                 // Set custom window size for browser
-                // browser.driver.manage().window().setSize(
-                //     browser.params.browserConfig.width,
-                //     browser.params.browserConfig.height
-                // );
+                browser.driver.manage().window().setSize(
+                    browser.params.browserConfig.width,
+                    browser.params.browserConfig.height
+                );
             }
         }
     }]

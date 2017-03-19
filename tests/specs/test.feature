@@ -5,5 +5,5 @@ Feature: Running Cucumber with Protractor
 
   Scenario: Open the main page and validate the title
     Given I go to "testPage"."mainURL"
-    Then the title should equal "Angular2 Seed"
+    Then the title should equal to "Angular2 Seed"
     And I click "testPage"."textError"
