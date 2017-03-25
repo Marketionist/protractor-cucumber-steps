@@ -1,6 +1,6 @@
 {
   "name": "protractor-cucumber-steps",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Cucumber steps (step definitions) written with Protractor for e2e tests",
   "main": "index.js",
   "engines": {
