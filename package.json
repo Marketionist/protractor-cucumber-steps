@@ -1,7 +1,7 @@
 {
   "name": "protractor-cucumber-steps",
   "version": "0.2.0",
-  "description": "Cucumber step definitions for Protractor tests",
+  "description": "Cucumber steps (step definitions) written with Protractor for e2e tests",
   "main": "index.js",
   "engines": {
     "node": ">=6.9.x"
@@ -9,14 +9,20 @@
   "scripts": {
     "postinstall": "webdriver-manager update",
     "lint": "node_modules/.bin/eslint *.js tests/**/*.js",
-    "test": "protractor tests/protractor.conf.js"
+    "test": "protractor tests/protractor.conf.js",
+    "patch": "npm version patch -m \"Bumped up package version to %s\" && git push && npm publish",
+    "minor": "npm version minor -m \"Bumped up package version to %s\" && git push && npm publish",
+    "major": "npm version major -m \"Bumped up package version to %s\" && git push && npm publish"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Marketionist/protractor-cucumber-steps"
   },
   "keywords": [
+    "protractor cucumber steps",
     "protractor-cucumber-steps",
+    "cucumber steps",
+    "cucumber step definitions",
     "protractor plugin",
     "test",
     "testing",
