@@ -28,7 +28,7 @@ module.exports = function () {
      */
     function waitForDisplayed(elementSelector) {
         browser.wait(EC.presenceOf(elementSelector), customTimeout,
-            `${elementSelector} should be visible, but it\'s not`);
+            `${elementSelector} should be visible, but it is not`);
     }
 
     // #### When steps #############################################################
@@ -56,7 +56,20 @@ module.exports = function () {
         }
 
         waitForDisplayed(elmnt);
+        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+            `${elmnt} should be clickable, but it is not`);
         elmnt.click();
+        next();
+    });
+
+    this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+            page1, element1, page2, element2, next) {
+        let inputField = element(by.css(pageObjects[page2][element2]));
+
+        browser.wait(EC.elementToBeClickable(inputField), customTimeout,
+            `${inputField} should be clickable, but it is not`);
+        browser.actions().mouseMove(inputField).click().perform();
+        inputField.sendKeys(pageObjects[page1][element1]);
         next();
     });
 
