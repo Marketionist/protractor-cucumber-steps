@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/protractor-cucumber-steps.svg)](https://www.npmjs.com/package/protractor-cucumber-steps)
 [![NPM License](https://img.shields.io/npm/l/protractor-cucumber-steps.svg)](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/LICENSE)
 
-Cucumber step definitions for Protractor tests
+Cucumber steps (step definitions) written with Protractor for e2e tests
 
 ## Supported versions
 [Node.js](http://nodejs.org/):
