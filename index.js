@@ -62,6 +62,25 @@ module.exports = function () {
         next();
     });
 
+    this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
+        let locator = pageObjects[page][elem];
+        let elmnt;
+        let timeToWait = 300;
+
+        if (locator[0] + locator[1] === '//') {
+            elmnt = element(by.xpath(locator));
+        } else {
+            elmnt = element(by.css(locator));
+        }
+
+        waitForDisplayed(elmnt);
+        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+            `${elmnt} should be clickable, but it is not`);
+        browser.sleep(timeToWait);
+        elmnt.click();
+        next();
+    });
+
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, next) {
         let inputField = element(by.css(pageObjects[page2][element2]));
