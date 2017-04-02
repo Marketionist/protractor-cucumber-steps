@@ -9,6 +9,22 @@ module.exports.config = {
     // Path relative to the current config file
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
+    capabilities: {
+        browserName: 'chrome',
+        chromeOptions: {
+            args: [
+                // Disable "Chrome is being controlled by automated test software" infobar
+                '--disable-infobars'
+            ],
+            prefs: {
+                // Disable Chrome's annoying password manager
+                'profile.password_manager_enabled': false,
+                'credentials_enable_service': false,
+                'password_manager_enabled': false
+            }
+        }
+    },
+
     // Spec patterns are relative to this directory
     specs: [
         'specs/**/*.feature' // accepts a glob
