@@ -81,6 +81,11 @@ module.exports = function () {
         next();
     });
 
+    this.When(/^I wait for ([^"]*) ms$/, function (timeToWait, next) {
+        browser.sleep(timeToWait);
+        next();
+    });
+
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, next) {
         let inputField = element(by.css(pageObjects[page2][element2]));
