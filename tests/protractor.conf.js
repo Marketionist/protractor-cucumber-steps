@@ -100,8 +100,7 @@ module.exports.config = {
             logsEnabled: 0,
             pages: {
                 '/test1.html': `<a id="link-test2-page" href="
-                        http://localhost:8001/test2.html">
-                        Test2 page</a>`,
+                        http://localhost:8001/test2.html">Test2 page</a>`,
                 '/test2.html': '<title>Test2 Page</title><h1>Test2 page</h1>'
             }
         }
