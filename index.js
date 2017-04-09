@@ -18,7 +18,8 @@ const censor = require('./utils/helpers.js').censor;
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 let EC = protractor.ExpectedConditions;
-let customTimeout = browser.params.customTimeout || 5000;
+let defaultCustomTimeout = 5000;
+let customTimeout = browser.params.customTimeout || defaultCustomTimeout;
 let pageObjects = browser.params.pageObjects;
 
 module.exports = function () {
@@ -81,7 +82,7 @@ module.exports = function () {
         next();
     });
 
-    this.When(/^I wait for ([^"]*) ms$/, function (timeToWait, next) {
+    this.When(/^I wait for (\d+) ms$/, function (timeToWait, next) {
         browser.sleep(timeToWait);
         next();
     });
