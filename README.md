@@ -1,5 +1,6 @@
 # protractor-cucumber-steps
 
+[![Build Status](https://travis-ci.org/Marketionist/protractor-cucumber-steps.svg?branch=master)](https://travis-ci.org/Marketionist/protractor-cucumber-steps)
 [![npm version](https://img.shields.io/npm/v/protractor-cucumber-steps.svg)](https://www.npmjs.com/package/protractor-cucumber-steps)
 [![NPM License](https://img.shields.io/npm/l/protractor-cucumber-steps.svg)](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/LICENSE)
 
