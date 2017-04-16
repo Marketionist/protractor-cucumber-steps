@@ -1,6 +1,6 @@
 'use strict';
 /* global browser, expect, element, by, EC */
-/* eslint no-magic-numbers: 1, new-cap: 0 */  // --> OFF for Given, When, Then
+/* eslint new-cap: 0 */ // --> OFF for Given, When, Then
 
 /*
  * Created by marketionist on 13.11.2016
@@ -29,7 +29,25 @@ module.exports = function () {
      */
     function waitForDisplayed(elementSelector) {
         browser.wait(EC.presenceOf(elementSelector), customTimeout,
-            `${elementSelector} should be visible, but it is not`);
+            'Element should be present, but it is not');
+    }
+    /**
+     * Composes proper element locator for fuether actions
+     * @param {string} page
+     * @param {string} elem
+     * @returns {object} elmnt
+     */
+    function composeLocator(page, elem) {
+        let locator = pageObjects[page][elem];
+        let elmnt;
+
+        if (locator[0] + locator[1] === '//') {
+            elmnt = element(by.xpath(locator));
+        } else {
+            elmnt = element(by.css(locator));
+        }
+
+        return elmnt;
     }
 
     // #### When steps #############################################################
@@ -47,36 +65,22 @@ module.exports = function () {
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
-        let locator = pageObjects[page][elem];
-        let elmnt;
-
-        if (locator[0] + locator[1] === '//') {
-            elmnt = element(by.xpath(locator));
-        } else {
-            elmnt = element(by.css(locator));
-        }
+        let elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `${elmnt} should be clickable, but it is not`);
+            `"${pageObjects[page][elem]}" should be clickable, but it is not`);
         elmnt.click();
         next();
     });
 
     this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
-        let locator = pageObjects[page][elem];
-        let elmnt;
+        let elmnt = composeLocator(page, elem);
         let timeToWait = 300;
-
-        if (locator[0] + locator[1] === '//') {
-            elmnt = element(by.xpath(locator));
-        } else {
-            elmnt = element(by.css(locator));
-        }
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `${elmnt} should be clickable, but it is not`);
+            `"${pageObjects[page][elem]}" should be clickable, but it is not`);
         browser.sleep(timeToWait);
         elmnt.click();
         next();
@@ -87,12 +91,25 @@ module.exports = function () {
         next();
     });
 
+    this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, next) {
+        let elmnt = composeLocator(page, elem);
+
+        elmnt.isPresent().then(function (isPresent) {
+            if (isPresent) {
+                // Element is present
+                elmnt.click();
+            }
+            next();
+        });
+    });
+
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, next) {
-        let inputField = element(by.css(pageObjects[page2][element2]));
+        let inputField = composeLocator(page2, element2);
 
+        waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${inputField} should be clickable, but it is not`);
+            `${pageObjects[page2][element2]} should be clickable, but it is not`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(pageObjects[page1][element1]);
         next();

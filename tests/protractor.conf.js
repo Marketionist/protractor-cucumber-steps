@@ -99,9 +99,36 @@ module.exports.config = {
             port: 8001,
             logsEnabled: 0,
             pages: {
-                '/test1.html': `<a id="link-test2-page" href="
-                        http://localhost:8001/test2.html">Test2 page</a>`,
-                '/test2.html': '<title>Test2 Page</title><h1>Test2 page</h1>'
+                '/test1.html': `<title>Test1 Page</title><a id="link-test2-page" href="
+                    http://localhost:8001/test2.html">Test2 page</a>`,
+                '/test2.html': `<title>Test2 Page</title>
+                    <script>
+                        window.onload = function() {
+                            document.getElementById("dropdown-colors").onchange = function() {
+                                document.getElementById("selected-color").innerHTML = document
+                                    .getElementById("dropdown-colors").value;
+                            }
+                        }
+                    </script>
+                    <h1>Test2 page</h1>
+                    <p>Selected color is: <span id="selected-color"></span></p>
+                    <select id="dropdown-colors" name="colors">
+                        <option value="default color">Default color</option>
+                        <option value="black">Black</option>
+                        <option value="grey">Grey</option>
+                        <option value="white">White</option>
+                        <option value="red">Red</option>
+                        <option value="crimson">Crimson</option>
+                        <option value="magenta">Magenta</option>
+                        <option value="blue">Blue</option>
+                        <option value="aqua">Aqua</option>
+                        <option value="cyan">Cyan</option>
+                        <option value="indigo">Indigo</option>
+                        <option value="green">Green</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="gold">Gold</option>
+                        <option value="orange">Orange</option>
+                    </select>`
             }
         }
         // Start node testing server
