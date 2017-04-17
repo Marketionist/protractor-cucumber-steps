@@ -27,3 +27,15 @@ Feature: Running Cucumber with Protractor
     And I click "testPage"."linkInvisibleTest2Page" if present
     And I wait for 200 ms
     Then the title should equal to "Test1 Page"
+
+  Scenario: Typing "Green" option text inside select dropdown should get this option selected
+    When I go to "test2Page"."pageTest2"
+    And I type "Green" in the "test2Page"."dropdownColors"
+    And I wait and click "test2Page"."dropdownColors"
+    Then "test2Page"."blockSelectedColor" has text "green"
+
+  Scenario: Typing "Gold" (page object) option text inside select dropdown should get this option selected
+    When I go to "test2Page"."pageTest2"
+    And I type "test2Page"."textGold" in the "test2Page"."dropdownColors"
+    And I wait and click "test2Page"."dropdownColors"
+    Then "test2Page"."blockSelectedColor" has text "test2Page"."textGold"
