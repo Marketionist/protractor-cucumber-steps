@@ -103,6 +103,18 @@ module.exports = function () {
         });
     });
 
+    this.When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+            text, page, elem, next) {
+        let inputField = composeLocator(page, elem);
+
+        waitForDisplayed(inputField);
+        browser.wait(EC.elementToBeClickable(inputField), customTimeout,
+            `${pageObjects[page][elem]} should be clickable, but it is not`);
+        browser.actions().mouseMove(inputField).click().perform();
+        inputField.sendKeys(text);
+        next();
+    });
+
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, next) {
         let inputField = composeLocator(page2, element2);
