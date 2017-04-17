@@ -105,13 +105,13 @@ module.exports.config = {
                     <script>
                         window.onload = function() {
                             document.getElementById("dropdown-colors").onchange = function() {
-                                document.getElementById("selected-color").innerHTML = document
+                                document.getElementById("block-selected-color").innerHTML = document
                                     .getElementById("dropdown-colors").value;
                             }
                         }
                     </script>
                     <h1>Test2 page</h1>
-                    <p>Selected color is: <span id="selected-color"></span></p>
+                    <p>Selected color is: <span id="block-selected-color"></span></p>
                     <select id="dropdown-colors" name="colors">
                         <option value="default color">Default color</option>
                         <option value="black">Black</option>
@@ -126,7 +126,7 @@ module.exports.config = {
                         <option value="indigo">Indigo</option>
                         <option value="green">Green</option>
                         <option value="yellow">Yellow</option>
-                        <option value="gold">Gold</option>
+                        <option value="Gold">Gold</option>
                         <option value="orange">Orange</option>
                     </select>`
             }
