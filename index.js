@@ -133,6 +133,14 @@ module.exports = function () {
         expect(browser.getTitle()).to.eventually.equal(text).and.notify(next);
     });
 
+    this.Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, next) {
+        let elmnt = composeLocator(page, elem);
+
+        browser.wait(EC.presenceOf(elmnt), customTimeout,
+            `"${pageObjects[page][elem]}" should be present, but it is not`);
+        next();
+    });
+
     // Take a callback as an additional argument to execute when the step is done
     this.Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
         fs.readFile(fileName, 'utf8', function (error, contents) {
