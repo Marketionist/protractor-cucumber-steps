@@ -141,6 +141,20 @@ module.exports = function () {
         next();
     });
 
+    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, next) {
+        let elmnt = composeLocator(page, elem);
+
+        expect(elmnt.getText()).to.eventually.equal(text).and.notify(next);
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"$/, function (
+            page1, element1, page2, element2, next) {
+        let elmnt = composeLocator(page1, element1);
+        let text = pageObjects[page2][element2];
+
+        expect(elmnt.getText()).to.eventually.equal(text).and.notify(next);
+    });
+
     // Take a callback as an additional argument to execute when the step is done
     this.Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
         fs.readFile(fileName, 'utf8', function (error, contents) {
