@@ -21,6 +21,7 @@ let EC = protractor.ExpectedConditions;
 let defaultCustomTimeout = 5000;
 let customTimeout = browser.params.customTimeout || defaultCustomTimeout;
 let pageObjects = browser.params.pageObjects;
+let timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) ms' step
 
 module.exports = function () {
     /**
@@ -81,14 +82,14 @@ module.exports = function () {
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" should be clickable, but it is not`);
-        browser.sleep(timeToWait);
-        elmnt.click();
-        next();
+        setTimeout(function () {
+            elmnt.click();
+            next();
+        }, timeToWait);
     });
 
-    this.When(/^I wait for (\d+) ms$/, function (timeToWait, next) {
-        browser.sleep(timeToWait);
-        next();
+    this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, next) {
+        setTimeout(next, timeToWait);
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, next) {
