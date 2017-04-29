@@ -21,6 +21,7 @@ let EC = protractor.ExpectedConditions;
 let defaultCustomTimeout = 5000;
 let customTimeout = browser.params.customTimeout || defaultCustomTimeout;
 let pageObjects = browser.params.pageObjects;
+let timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) ms' step
 
 module.exports = function () {
     /**
@@ -81,14 +82,14 @@ module.exports = function () {
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" should be clickable, but it is not`);
-        browser.sleep(timeToWait);
-        elmnt.click();
-        next();
+        setTimeout(function () {
+            elmnt.click();
+            next();
+        }, timeToWait);
     });
 
-    this.When(/^I wait for (\d+) ms$/, function (timeToWait, next) {
-        browser.sleep(timeToWait);
-        next();
+    this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, next) {
+        setTimeout(next, timeToWait);
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, next) {
@@ -101,6 +102,18 @@ module.exports = function () {
             }
             next();
         });
+    });
+
+    this.When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+            text, page, elem, next) {
+        let inputField = composeLocator(page, elem);
+
+        waitForDisplayed(inputField);
+        browser.wait(EC.elementToBeClickable(inputField), customTimeout,
+            `${pageObjects[page][elem]} should be clickable, but it is not`);
+        browser.actions().mouseMove(inputField).click().perform();
+        inputField.sendKeys(text);
+        next();
     });
 
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
@@ -119,6 +132,28 @@ module.exports = function () {
 
     this.Then(/the title should equal to "([^"]*)"$/, function (text, next) {
         expect(browser.getTitle()).to.eventually.equal(text).and.notify(next);
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, next) {
+        let elmnt = composeLocator(page, elem);
+
+        browser.wait(EC.presenceOf(elmnt), customTimeout,
+            `"${pageObjects[page][elem]}" should be present, but it is not`);
+        next();
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, next) {
+        let elmnt = composeLocator(page, elem);
+
+        expect(elmnt.getText()).to.eventually.equal(text).and.notify(next);
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"$/, function (
+            page1, element1, page2, element2, next) {
+        let elmnt = composeLocator(page1, element1);
+        let text = pageObjects[page2][element2];
+
+        expect(elmnt.getText()).to.eventually.equal(text).and.notify(next);
     });
 
     // Take a callback as an additional argument to execute when the step is done
