@@ -55,6 +55,16 @@ exports.config = {
 };
 ```
 
+## List of predefined steps
+You can see the example of how to use predefined steps in [`test.feature`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/specs/test.feature)
+
+### When steps
+- `I go to URL "([^"]*)"` - Open a site (by its URL provided in "") in the current browser window/tab
+- `I go to "([^"]*)"."([^"]*)"` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
+- `I click "([^"]*)"."([^"]*)` - Click on any element (provided in "page"."object")
+- `I wait and click "([^"]*)"."([^"]*)"` - Wait for 300 ms and click on any element (provided in "page"."object")
+- `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
+
 ## CONTRIBUTING
 To install all needed packages just use:
 ```
