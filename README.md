@@ -63,7 +63,10 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I go to "([^"]*)"."([^"]*)"` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
 - `I click "([^"]*)"."([^"]*)` - Click on any element (provided in "page"."object")
 - `I wait and click "([^"]*)"."([^"]*)"` - Wait for 300 ms and click on any element (provided in "page"."object")
+- `I click "([^"]*)"."([^"]*)" if present` - Click on any element (provided in "page"."object") only if it is present on the page
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
+- `I type "([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided as a string) in the input field (provided in "page"."object")
+- `I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
 
 ## CONTRIBUTING
 To install all needed packages just use:
