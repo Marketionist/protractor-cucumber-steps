@@ -65,8 +65,15 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I wait and click "([^"]*)"."([^"]*)"` - Wait for 300 ms and click on any element (provided in "page"."object")
 - `I click "([^"]*)"."([^"]*)" if present` - Click on any element (provided in "page"."object") only if it is present on the page
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
-- `I type "([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided as a string) in the input field (provided in "page"."object")
+- `I type "([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
 - `I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
+
+### Then steps
+- `the title should equal to "([^"]*)"` - Validate the title (provided in "" as a string) of the current browser window/tab
+- `"([^"]*)"."([^"]*)" should be present` - Validate that the element (provided in "page"."object") is present on the page
+- `"([^"]*)"."([^"]*)" has text "([^"]*)"` - Validate that the element (provided in "page"."object") has text (provided in "" as a string)
+- `"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"` - Validate that the element (provided in "page1"."object1") has text (provided in "page2"."object2")
+- `the file "([^"]*)" is empty` - Validate that the file (with name provided in "" as a string) is empty
 
 ## CONTRIBUTING
 To install all needed packages just use:
