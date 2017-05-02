@@ -53,29 +53,29 @@ module.exports = function () {
 
     // #### When steps #############################################################
 
-    this.When(/^I go to URL "([^"]*)"$/, function (url, next) {
+    this.When(/^I go to URL "([^"]*)"$/, function (url, callback) {
         browser.get(url);
-        next();
+        callback();
     });
 
-    this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
+    this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         let url = pageObjects[page][elem];
 
         browser.get(url);
-        next();
+        callback();
     });
 
-    this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
+    this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         let elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" should be clickable, but it is not`);
         elmnt.click();
-        next();
+        callback();
     });
 
-    this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, next) {
+    this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         let elmnt = composeLocator(page, elem);
         let timeToWait = 300;
 
@@ -84,28 +84,28 @@ module.exports = function () {
             `"${pageObjects[page][elem]}" should be clickable, but it is not`);
         setTimeout(function () {
             elmnt.click();
-            next();
+            callback();
         }, timeToWait);
     });
 
-    this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, next) {
-        setTimeout(next, timeToWait);
-    });
-
-    this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, next) {
+    this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {
         let elmnt = composeLocator(page, elem);
 
         elmnt.isPresent().then(function (isPresent) {
             if (isPresent) {
-                // Element is present
+                // Click only if element is present
                 elmnt.click();
             }
-            next();
+            callback();
         });
     });
 
+    this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, callback) {
+        setTimeout(callback, timeToWait);
+    });
+
     this.When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
-            text, page, elem, next) {
+            text, page, elem, callback) {
         let inputField = composeLocator(page, elem);
 
         waitForDisplayed(inputField);
@@ -113,11 +113,11 @@ module.exports = function () {
             `${pageObjects[page][elem]} should be clickable, but it is not`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(text);
-        next();
+        callback();
     });
 
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
-            page1, element1, page2, element2, next) {
+            page1, element1, page2, element2, callback) {
         let inputField = composeLocator(page2, element2);
 
         waitForDisplayed(inputField);
@@ -125,35 +125,35 @@ module.exports = function () {
             `${pageObjects[page2][element2]} should be clickable, but it is not`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(pageObjects[page1][element1]);
-        next();
+        callback();
     });
 
     // #### Then steps #############################################################
 
-    this.Then(/the title should equal to "([^"]*)"$/, function (text, next) {
-        expect(browser.getTitle()).to.eventually.equal(text).and.notify(next);
+    this.Then(/the title should equal to "([^"]*)"$/, function (text, callback) {
+        expect(browser.getTitle()).to.eventually.equal(text).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, next) {
+    this.Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, callback) {
         let elmnt = composeLocator(page, elem);
 
         browser.wait(EC.presenceOf(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" should be present, but it is not`);
-        next();
+        callback();
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, next) {
+    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, callback) {
         let elmnt = composeLocator(page, elem);
 
-        expect(elmnt.getText()).to.eventually.equal(text).and.notify(next);
+        expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
     this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"$/, function (
-            page1, element1, page2, element2, next) {
+            page1, element1, page2, element2, callback) {
         let elmnt = composeLocator(page1, element1);
         let text = pageObjects[page2][element2];
 
-        expect(elmnt.getText()).to.eventually.equal(text).and.notify(next);
+        expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
     // Take a callback as an additional argument to execute when the step is done
