@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "webdriver-manager update",
     "lint": "node_modules/.bin/eslint *.js tests/**/*.js",
-    "test": "protractor tests/protractor.conf.js",
+    "test": "node_modules/.bin/protractor tests/protractor.conf.js",
     "patch": "npm version patch -m \"Bumped up package version to %s\" && git push && npm publish",
     "minor": "npm version minor -m \"Bumped up package version to %s\" && git push && npm publish",
     "major": "npm version major -m \"Bumped up package version to %s\" && git push && npm publish"
@@ -27,6 +27,8 @@
     "test",
     "testing",
     "automated tests",
+    "e2e tests",
+    "end-to-end tests",
     "webdriver",
     "webdriverjs",
     "selenium",
