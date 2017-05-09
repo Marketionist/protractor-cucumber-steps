@@ -86,10 +86,10 @@ To run tests use:
 npm test
 ```
 
-To run tests with any specific parameters add `-- --parameter=value`. For example:
+To run tests with any specific parameters add `-- --parameter value`. For example:
 
 ```node
-npm test -- --tags=@Tag,@AnotherTag
+npm test -- --cucumberOpts.tags @Tag,@AnotherTag
 ```
 
 Tests can be executed locally or remotely using Travis CI. Remote tests run is
