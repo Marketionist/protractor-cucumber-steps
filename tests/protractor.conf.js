@@ -52,6 +52,8 @@ module.exports.config = {
         pageObjects: require('./page_objects/index.js'),
         // Custom timeout to wait for elements on the page
         customTimeout: 5000,
+        // Selector for the elelemnt that appears while page is loading (loader mask)
+        selectorPageLoading: '.loader',
         // Params for setting browser window width and height - can be also
         // changed via the command line as: --params.browserConfig.width 1024
         browserConfig: {
@@ -100,7 +102,8 @@ module.exports.config = {
             logsEnabled: 0,
             pages: {
                 '/test1.html': `<title>Test1 Page</title><a id="link-test2-page" href="
-                    http://localhost:8001/test2.html">Test2 page</a>`,
+                    http://localhost:8001/test2.html">Test2 page</a>
+                    <div class="loader"></div>`,
                 '/test2.html': `<title>Test2 Page</title>
                     <script>
                         window.onload = function() {
@@ -143,7 +146,7 @@ module.exports.config = {
     */
     afterLaunch: function () {
         // Stop node testing server
-        return nodeTestingServer.stop();
+        return Promise.resolve(nodeTestingServer.stop());
     },
     /*
     * This is called before the test have been run but after the test framework has
