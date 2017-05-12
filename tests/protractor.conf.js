@@ -143,7 +143,7 @@ module.exports.config = {
     */
     afterLaunch: function () {
         // Stop node testing server
-        return nodeTestingServer.stop();
+        return Promise.resolve(nodeTestingServer.stop());
     },
     /*
     * This is called before the test have been run but after the test framework has
