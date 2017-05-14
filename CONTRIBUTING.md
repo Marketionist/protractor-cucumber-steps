@@ -2,8 +2,8 @@
 
 We welcome contributions - thanks for taking the time to contribute! Here are
 some guidelines to help you get started. These are just guidelines, not rules,
-use your best judgment and feel free to propose changes to this document in a
-pull request.
+so use your best judgment and feel free to propose changes to this document in
+a pull request.
 
 ## Discussion
 
@@ -79,6 +79,15 @@ anything. Before you submit your pull request make sure you pass all the tests:
 
 You can run code linting with: `npm run lint`.
 You can run all the e2e tests with: `npm test`.
+
+To run tests with any specific parameters add `-- --parameter value`. For example:
+
+```node
+npm test -- --cucumberOpts.tags @Tag,@AnotherTag
+```
+
+Tests can be executed locally or remotely using Travis CI. Remote tests run is
+triggered by each pull request.
 
 ### Push
 
