@@ -22,10 +22,15 @@ npm install protractor-cucumber-steps --save-dev
 ```
 
 ## Importing and enabling
-To get access to all Cucumber steps just add the path to
-protractor-cucumber-steps (in `cucumberOpts` -> `require`) and path to your page
-object file (in `params` -> `pageObjects`) inside `protractor.config.js`. Here
-is a short config example:
+This package is used as plugin with
+[protractor](https://www.npmjs.com/package/protractor) and
+[protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework).
+It is quite simple to use - to get access to all Cucumber steps defined in this
+plugin just:
+- add the path to protractor-cucumber-steps (in `cucumberOpts` -> `require`);
+- add the path to your page object file (in `params` -> `pageObjects`) inside `protractor.config.js`.
+
+Here is a short config example:
 
 ```javascript
 exports.config = {
@@ -55,6 +60,8 @@ exports.config = {
 };
 ```
 
+You can also see the example of [`protractor.config.js`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js)
+
 ## List of predefined steps
 You can see the example of how to use predefined steps in [`test.feature`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/specs/test.feature)
 
@@ -75,25 +82,10 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"` - Validate that the element (provided in "page1"."object1") has text (provided in "page2"."object2")
 - `the file "([^"]*)" is empty` - Validate that the file (with name provided in "" as a string) is empty
 
-## CONTRIBUTING
-To install all needed packages just use:
-```
-npm install
-```
-
-To run tests use:
-```
-npm test
-```
-
-To run tests with any specific parameters add `-- --parameter value`. For example:
-
-```node
-npm test -- --cucumberOpts.tags @Tag,@AnotherTag
-```
-
-Tests can be executed locally or remotely using Travis CI. Remote tests run is
-triggered by each pull request.
+## Contributing
+You are welcome to contribute - please see
+[CONTRIBUTING.md](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/CONTRIBUTING.md)
+to help you get started.
 
 ## Thanks
 If this plugin was helpful for you, please give it a **★ Star** on
