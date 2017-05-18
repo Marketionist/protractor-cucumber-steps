@@ -14,6 +14,7 @@ const chaiAsPromised = require('chai-as-promised');
 const fs = require('fs');
 const protractor = require('protractor');
 const censor = require('./utils/helpers.js').censor;
+const errors = require('./utils/errors.js');
 
 chai.use(chaiAsPromised);
 let expect = chai.expect;
@@ -30,7 +31,7 @@ module.exports = function () {
      */
     function waitForDisplayed(elementSelector) {
         browser.wait(EC.presenceOf(elementSelector), customTimeout,
-            'Element should be present, but it is not');
+            errors.PRESENT);
     }
     /**
      * Composes proper element locator for fuether actions
@@ -70,7 +71,7 @@ module.exports = function () {
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `"${pageObjects[page][elem]}" should be clickable, but it is not`);
+            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         elmnt.click();
         callback();
     });
@@ -81,7 +82,7 @@ module.exports = function () {
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `"${pageObjects[page][elem]}" should be clickable, but it is not`);
+            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         setTimeout(function () {
             elmnt.click();
             callback();
@@ -110,7 +111,7 @@ module.exports = function () {
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${pageObjects[page][elem]} should be clickable, but it is not`);
+            `${pageObjects[page][elem]} ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(text);
         callback();
@@ -122,7 +123,7 @@ module.exports = function () {
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${pageObjects[page2][element2]} should be clickable, but it is not`);
+            `${pageObjects[page2][element2]} ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(pageObjects[page1][element1]);
         callback();
@@ -138,7 +139,7 @@ module.exports = function () {
         let elmnt = composeLocator(page, elem);
 
         browser.wait(EC.presenceOf(elmnt), customTimeout,
-            `"${pageObjects[page][elem]}" should be present, but it is not`);
+            `"${pageObjects[page][elem]}" ${errors.PRESENT}`);
         callback();
     });
 
