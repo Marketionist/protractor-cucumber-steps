@@ -14,7 +14,6 @@ const chaiAsPromised = require('chai-as-promised');
 const fs = require('fs');
 const protractor = require('protractor');
 const censor = require('./utils/helpers.js').censor;
-const util = require('util');
 const errors = require('./utils/errors.js');
 
 chai.use(chaiAsPromised);
@@ -140,6 +139,12 @@ module.exports = function () {
         let elmnt = composeLocator(page, elem);
 
         expect(elmnt.isPresent()).to.eventually.equal(true).and.notify(callback);
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" should not be present$/, function (page, elem, callback) {
+        let elmnt = composeLocator(page, elem);
+
+        expect(elmnt.isPresent()).to.eventually.equal(false).and.notify(callback);
     });
 
     this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, callback) {
