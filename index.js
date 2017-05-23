@@ -17,12 +17,12 @@ const censor = require('./utils/helpers.js').censor;
 const errors = require('./utils/errors.js');
 
 chai.use(chaiAsPromised);
-let expect = chai.expect;
-let EC = protractor.ExpectedConditions;
-let defaultCustomTimeout = 5000;
-let customTimeout = browser.params.customTimeout || defaultCustomTimeout;
-let pageObjects = browser.params.pageObjects;
-let timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) ms' step
+const expect = chai.expect;
+const EC = protractor.ExpectedConditions;
+const defaultCustomTimeout = 5000;
+const customTimeout = browser.params.customTimeout || defaultCustomTimeout;
+const pageObjects = browser.params.pageObjects;
+const timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) ms' step
 
 module.exports = function () {
     /**
@@ -40,7 +40,7 @@ module.exports = function () {
      * @returns {object} elmnt
      */
     function composeLocator(page, elem) {
-        let locator = pageObjects[page][elem];
+        const locator = pageObjects[page][elem];
         let elmnt;
 
         if (locator[0] + locator[1] === '//') {
@@ -60,14 +60,14 @@ module.exports = function () {
     });
 
     this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        let url = pageObjects[page][elem];
+        const url = pageObjects[page][elem];
 
         browser.get(url);
         callback();
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        let elmnt = composeLocator(page, elem);
+        const elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
@@ -77,8 +77,8 @@ module.exports = function () {
     });
 
     this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        let elmnt = composeLocator(page, elem);
-        let timeToWait = 300;
+        const elmnt = composeLocator(page, elem);
+        const timeToWait = 300;
 
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
@@ -90,7 +90,7 @@ module.exports = function () {
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {
-        let elmnt = composeLocator(page, elem);
+        const elmnt = composeLocator(page, elem);
 
         elmnt.isPresent().then(function (isPresent) {
             if (isPresent) {
@@ -107,7 +107,7 @@ module.exports = function () {
 
     this.When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             text, page, elem, callback) {
-        let inputField = composeLocator(page, elem);
+        const inputField = composeLocator(page, elem);
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
@@ -119,7 +119,7 @@ module.exports = function () {
 
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
-        let inputField = composeLocator(page2, element2);
+        const inputField = composeLocator(page2, element2);
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
@@ -136,27 +136,27 @@ module.exports = function () {
     });
 
     this.Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, callback) {
-        let elmnt = composeLocator(page, elem);
+        const elmnt = composeLocator(page, elem);
 
         expect(elmnt.isPresent()).to.eventually.equal(true).and.notify(callback);
     });
 
     this.Then(/^"([^"]*)"."([^"]*)" should not be present$/, function (page, elem, callback) {
-        let elmnt = composeLocator(page, elem);
+        const elmnt = composeLocator(page, elem);
 
         expect(elmnt.isPresent()).to.eventually.equal(false).and.notify(callback);
     });
 
     this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, callback) {
-        let elmnt = composeLocator(page, elem);
+        const elmnt = composeLocator(page, elem);
 
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
     this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
-        let elmnt = composeLocator(page1, element1);
-        let text = pageObjects[page2][element2];
+        const elmnt = composeLocator(page1, element1);
+        const text = pageObjects[page2][element2];
 
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
