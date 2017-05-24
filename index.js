@@ -105,6 +105,19 @@ module.exports = function () {
         setTimeout(callback, timeToWait);
     });
 
+    this.When(/^I wait for "([^"]*)"."([^"]*)" to be present$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        waitForDisplayed(elmnt);
+        elmnt.isPresent().then(function (isPresent) {
+            if (isPresent) {
+                callback();
+            } else {
+                throw new Error(errors.PRESENT);
+            }
+        });
+    });
+
     this.When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             text, page, elem, callback) {
         const inputField = composeLocator(page, elem);
