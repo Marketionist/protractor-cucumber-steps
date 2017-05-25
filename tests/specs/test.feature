@@ -30,9 +30,13 @@ Feature: Running Cucumber with Protractor
     And I wait for 200 ms
     Then the title should equal to "Test1 Page"
 
+  Scenario: Should wait for link to be present on Page1 test page
+    When I go to URL "http://localhost:8001/test1.html"
+    And I wait for "testPage"."linkTest2Page" to be present
+
   Scenario: Link on Page1 test page should be present
     When I go to "testPage"."pageTest1"
-    And I wait for 200 ms
+    And I wait for "testPage"."linkTest2Page" to be present
     Then "testPage"."linkTest2Page" should be present
 
   Scenario: Link on Page1 test page should not be present
