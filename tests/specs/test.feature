@@ -5,6 +5,11 @@ Feature: Running Cucumber with Protractor
   I should be able to use Cucumber
   to run my e2e tests
 
+  Scenario: Reload the page should refresh the page
+    When I go to "testPage"."pageTest1"
+    And I reload the page
+    Then "testPage"."linkTest2Page" should be present
+
   Scenario: Click on Page1 test page link should lead to Page2 test page
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for 200 ms
