@@ -66,6 +66,11 @@ module.exports = function () {
         callback();
     });
 
+    this.When(/^I reload the page$/, function (callback) {
+        browser.refresh();
+        callback();
+    });
+
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
