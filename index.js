@@ -179,6 +179,10 @@ module.exports = function () {
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
+    this.Then(/^URL should be "([^"]*)"$/, function (url, callback) {
+        expect(browser.getCurrentUrl()).to.eventually.equal(url).and.notify(callback);
+    });
+
     // Take a callback as an additional argument to execute when the step is done
     this.Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
         fs.readFile(fileName, 'utf8', function (error, contents) {
