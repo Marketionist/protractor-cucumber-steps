@@ -183,6 +183,16 @@ module.exports = function () {
         expect(browser.getCurrentUrl()).to.eventually.equal(url).and.notify(callback);
     });
 
+    this.Then(/^URL should match \/([^"]*)\/$/, function (regex, callback) {
+        browser.getCurrentUrl().then(function (url) {
+            if (new RegExp(regex).test(url)) {
+                callback();
+            } else {
+                throw new Error(`${url} ${errors.REGEX} ${regex}`);
+            }
+        });
+    });
+
     // Take a callback as an additional argument to execute when the step is done
     this.Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
         fs.readFile(fileName, 'utf8', function (error, contents) {
