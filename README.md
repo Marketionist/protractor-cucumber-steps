@@ -68,16 +68,19 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 ### When steps
 - `I go to URL "([^"]*)"` - Open a site (by its URL provided in "") in the current browser window/tab
 - `I go to "([^"]*)"."([^"]*)"` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
+- `I reload the page` - Reload current page
 - `I click "([^"]*)"."([^"]*)` - Click on any element (provided in "page"."object")
 - `I wait and click "([^"]*)"."([^"]*)"` - Wait for 300 ms and click on any element (provided in "page"."object")
 - `I click "([^"]*)"."([^"]*)" if present` - Click on any element (provided in "page"."object") only if it is present on the page
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
+- `I wait for "([^"]*)"."([^"]*)" to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.config.js` - see the [example|https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js])
 - `I type "([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
 - `I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
 
 ### Then steps
 - `the title should equal to "([^"]*)"` - Validate the title (provided in "" as a string) of the current browser window/tab
 - `"([^"]*)"."([^"]*)" should be present` - Validate that the element (provided in "page"."object") is present on the page
+- `"([^"]*)"."([^"]*)" should not be present` - Validate that the element (provided in "page"."object") is not present on the page
 - `"([^"]*)"."([^"]*)" has text "([^"]*)"` - Validate that the element (provided in "page"."object") has text (provided in "" as a string)
 - `"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"` - Validate that the element (provided in "page1"."object1") has text (provided in "page2"."object2")
 - `the file "([^"]*)" is empty` - Validate that the file (with name provided in "" as a string) is empty
