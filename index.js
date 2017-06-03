@@ -149,7 +149,7 @@ module.exports = function () {
 
     // #### Then steps #############################################################
 
-    this.Then(/the title should equal to "([^"]*)"$/, function (text, callback) {
+    this.Then(/the title should be "([^"]*)"$/, function (text, callback) {
         expect(browser.getTitle()).to.eventually.equal(text).and.notify(callback);
     });
 
@@ -165,13 +165,13 @@ module.exports = function () {
         expect(elmnt.isPresent()).to.eventually.equal(false).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, callback) {
+    this.Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
         const elmnt = composeLocator(page, elem);
 
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"$/, function (
+    this.Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
         const elmnt = composeLocator(page1, element1);
         const text = pageObjects[page2][element2];
@@ -183,12 +183,12 @@ module.exports = function () {
         expect(browser.getCurrentUrl()).to.eventually.equal(url).and.notify(callback);
     });
 
-    this.Then(/^URL should match \/([^"]*)\/$/, function (regex, callback) {
+    this.Then(/^URL should match \/([^"]*)\/$/, function (regexp, callback) {
         browser.getCurrentUrl().then(function (url) {
-            if (new RegExp(regex).test(url)) {
+            if (new RegExp(regexp).test(url)) {
                 callback();
             } else {
-                throw new Error(`${url} ${errors.REGEX} ${regex}`);
+                throw new Error(`${url} ${errors.REGEXP} ${regexp}`);
             }
         });
     });
