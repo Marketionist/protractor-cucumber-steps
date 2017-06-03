@@ -193,6 +193,16 @@ module.exports = function () {
         });
     });
 
+    this.Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
+        browser.getCurrentUrl().then(function (url) {
+            if (url.indexOf(urlPart) === -1) {
+                throw new Error(`${url} ${errors.CONTAIN} ${urlPart}`);
+            } else {
+                callback();
+            }
+        });
+    });
+
     // Take a callback as an additional argument to execute when the step is done
     this.Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
         fs.readFile(fileName, 'utf8', function (error, contents) {
