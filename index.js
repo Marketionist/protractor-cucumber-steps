@@ -179,6 +179,32 @@ module.exports = function () {
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
+    this.Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        elmnt.getText().then(function (text) {
+            if (text.indexOf(textPart) === -1) {
+                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+            } else {
+                callback();
+            }
+        });
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"$/, function (
+            page1, element1, page2, element2, callback) {
+        const elmnt = composeLocator(page1, element1);
+        const textPart = pageObjects[page2][element2];
+
+        elmnt.getText().then(function (text) {
+            if (text.indexOf(textPart) === -1) {
+                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+            } else {
+                callback();
+            }
+        });
+    });
+
     this.Then(/^URL should be "([^"]*)"$/, function (url, callback) {
         expect(browser.getCurrentUrl()).to.eventually.equal(url).and.notify(callback);
     });
