@@ -66,6 +66,11 @@ module.exports = function () {
         callback();
     });
 
+    this.When(/^I reload the page$/, function (callback) {
+        browser.refresh();
+        callback();
+    });
+
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
@@ -144,7 +149,7 @@ module.exports = function () {
 
     // #### Then steps #############################################################
 
-    this.Then(/the title should equal to "([^"]*)"$/, function (text, callback) {
+    this.Then(/the title should be "([^"]*)"$/, function (text, callback) {
         expect(browser.getTitle()).to.eventually.equal(text).and.notify(callback);
     });
 
@@ -160,18 +165,68 @@ module.exports = function () {
         expect(elmnt.isPresent()).to.eventually.equal(false).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"$/, function (page, elem, text, callback) {
+    this.Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
         const elmnt = composeLocator(page, elem);
 
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" has text "([^"]*)"."([^"]*)"$/, function (
+    this.Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
         const elmnt = composeLocator(page1, element1);
         const text = pageObjects[page2][element2];
 
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        elmnt.getText().then(function (text) {
+            if (text.indexOf(textPart) === -1) {
+                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+            } else {
+                callback();
+            }
+        });
+    });
+
+    this.Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"$/, function (
+            page1, element1, page2, element2, callback) {
+        const elmnt = composeLocator(page1, element1);
+        const textPart = pageObjects[page2][element2];
+
+        elmnt.getText().then(function (text) {
+            if (text.indexOf(textPart) === -1) {
+                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+            } else {
+                callback();
+            }
+        });
+    });
+
+    this.Then(/^URL should be "([^"]*)"$/, function (url, callback) {
+        expect(browser.getCurrentUrl()).to.eventually.equal(url).and.notify(callback);
+    });
+
+    this.Then(/^URL should match \/([^"]*)\/$/, function (regexp, callback) {
+        browser.getCurrentUrl().then(function (url) {
+            if (new RegExp(regexp).test(url)) {
+                callback();
+            } else {
+                throw new Error(`${url} ${errors.REGEXP} ${regexp}`);
+            }
+        });
+    });
+
+    this.Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
+        browser.getCurrentUrl().then(function (url) {
+            if (url.indexOf(urlPart) === -1) {
+                throw new Error(`${url} ${errors.CONTAIN} ${urlPart}`);
+            } else {
+                callback();
+            }
+        });
     });
 
     // Take a callback as an additional argument to execute when the step is done
