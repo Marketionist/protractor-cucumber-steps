@@ -83,6 +83,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `"([^"]*)"."([^"]*)" should not be present` - Validate that element (provided in "page"."object") is not present on the page
 - `"([^"]*)"."([^"]*)" text should be "([^"]*)"` - Validate that text of the element (provided in "page"."object") equals to the text (provided in "" as a string)
 - `"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"` - Validate that text of the element (provided in "page1"."object1") equals to the text (provided in "page2"."object2")
+- `"([^"]*)"."([^"]*)" text should contain "([^"]*)"` - Validate that text of the element (provided in "page"."object") contains the text (provided in "" as a string)
+- `"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"` - Validate that text of the element (provided in "page1"."object1") contains the text (provided in "page2"."object2")
 - `URL should be "([^"]*)"` - Validate that URL of the current page equals to the text (provided in "" as a string)
 - `URL should match \/([^"]*)\/` - Validate that URL of the current page matches the regular expression pattern (provided inside // like: /pattern/)
 - `URL should contain "([^"]*)"` - Validate that URL of the current page contains the text (provided in "" as a string)
