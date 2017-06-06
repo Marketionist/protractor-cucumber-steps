@@ -27,8 +27,8 @@ This package is used as plugin with
 [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework).
 It is quite simple to use - to get access to all Cucumber steps defined in this
 plugin just:
-- add the path to protractor-cucumber-steps (in `cucumberOpts` -> `require`);
-- add the path to your page object file (in `params` -> `pageObjects`) inside `protractor.config.js`.
+- add the path to protractor-cucumber-steps (in `cucumberOpts` -> `require`) inside `protractor.conf.js`;
+- add the path to your page object file (in `params` -> `pageObjects`) inside `protractor.conf.js`.
 
 Here is a short config example:
 
@@ -60,35 +60,35 @@ exports.config = {
 };
 ```
 
-You can also see the example of [`protractor.config.js`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js)
+You can also see the example of [`protractor.conf.js`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js)
 
 ## List of predefined steps
 You can see the example of how to use predefined steps in [`test.feature`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/specs/test.feature)
 
 ### When steps
-- `I go to URL "([^"]*)"` - Open a site (by its URL provided in "") in the current browser window/tab
-- `I go to "([^"]*)"."([^"]*)"` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
+- `I go to URL "..."` - Open a site (by its URL provided in "") in the current browser window/tab
+- `I go to "..."."..."` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
 - `I reload the page` - Reload current page
-- `I click "([^"]*)"."([^"]*)` - Click on any element (provided in "page"."object")
-- `I wait and click "([^"]*)"."([^"]*)"` - Wait for 300 ms and click on any element (provided in "page"."object")
-- `I click "([^"]*)"."([^"]*)" if present` - Click on any element (provided in "page"."object") only if it is present on the page
+- `I click "..."."..."` - Click on any element (provided in "page"."object")
+- `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object")
+- `I click "..."."..." if present` - Click on any element (provided in "page"."object") only if it is present on the page
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
-- `I wait for "([^"]*)"."([^"]*)" to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.config.js` - see the [example|https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js])
-- `I type "([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
-- `I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
+- `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example|https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js])
+- `I type "..." in the "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
+- `I type "..."."..." in the "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
 
 ### Then steps
-- `the title should be "([^"]*)"` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
-- `"([^"]*)"."([^"]*)" should be present` - Validate that element (provided in "page"."object") is present on the page
-- `"([^"]*)"."([^"]*)" should not be present` - Validate that element (provided in "page"."object") is not present on the page
-- `"([^"]*)"."([^"]*)" text should be "([^"]*)"` - Validate that text of the element (provided in "page"."object") equals to the text (provided in "" as a string)
-- `"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"` - Validate that text of the element (provided in "page1"."object1") equals to the text (provided in "page2"."object2")
-- `"([^"]*)"."([^"]*)" text should contain "([^"]*)"` - Validate that text of the element (provided in "page"."object") contains the text (provided in "" as a string)
-- `"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"` - Validate that text of the element (provided in "page1"."object1") contains the text (provided in "page2"."object2")
-- `URL should be "([^"]*)"` - Validate that URL of the current page equals to the text (provided in "" as a string)
-- `URL should match \/([^"]*)\/` - Validate that URL of the current page matches the regular expression pattern (provided inside // like: /pattern/)
-- `URL should contain "([^"]*)"` - Validate that URL of the current page contains the text (provided in "" as a string)
-- `the file "([^"]*)" is empty` - Validate that the file (with name provided in "" as a string) is empty
+- `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
+- `"..."."..." should be present` - Validate that element (provided in "page"."object") is present on the page
+- `"..."."..." should not be present` - Validate that element (provided in "page"."object") is not present on the page
+- `"..."."..." text should be "..."` - Validate that text of the element (provided in "page"."object") equals to the text (provided in "" as a string)
+- `"..."."..." text should be "..."."..."` - Validate that text of the element (provided in "page1"."object1") equals to the text (provided in "page2"."object2")
+- `"..."."..." text should contain "..."` - Validate that text of the element (provided in "page"."object") contains the text (provided in "" as a string)
+- `"..."."..." text should contain "..."."..."` - Validate that text of the element (provided in "page1"."object1") contains the text (provided in "page2"."object2")
+- `URL should be "..."` - Validate that URL of the current page equals to the text (provided in "" as a string)
+- `URL should match /.../` - Validate that URL of the current page matches the regular expression pattern (provided inside // like: /pattern/)
+- `URL should contain "..."` - Validate that URL of the current page contains the text (provided in "" as a string)
+- `the file "..." is empty` - Validate that the file (with name provided in "" as a string) is empty
 
 ## Contributing
 You are welcome to contribute - please see
