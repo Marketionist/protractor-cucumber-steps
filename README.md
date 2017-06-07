@@ -90,6 +90,20 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `URL should contain "..."` - Validate that URL of the current page contains the text (provided in "" as a string)
 - `the file "..." is empty` - Validate that the file (with name provided in "" as a string) is empty
 
+## How to comment out a line in the feature file
+You can add comments in `.feature` files using `#` for single line comments.
+Multiline (or block) comments are not supported in Gherkin out of the box (see https://github.com/cucumber/gherkin/issues/203), so you have to prefix all lines
+with `#` like this:
+
+```
+# Test single line comment 1
+# Test single line comment 2
+Scenario: Commit to open source should be joyful
+  When I commit
+  Then I get a star
+  # And a commented out step
+```
+
 ## Contributing
 You are welcome to contribute - please see
 [CONTRIBUTING.md](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/CONTRIBUTING.md)
