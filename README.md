@@ -73,7 +73,7 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object")
 - `I click "..."."..." if present` - Click on any element (provided in "page"."object") only if it is present on the page
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
-- `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example|https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js])
+- `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js))
 - `I type "..." in the "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
 - `I type "..."."..." in the "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
 
