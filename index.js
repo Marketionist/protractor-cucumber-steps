@@ -106,6 +106,16 @@ module.exports = function () {
         });
     });
 
+    this.When(/^I double click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        waitForDisplayed(elmnt);
+        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+        browser.actions().mouseMove(elmnt).doubleClick().perform();
+        callback();
+    });
+
     this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, callback) {
         setTimeout(callback, timeToWait);
     });
