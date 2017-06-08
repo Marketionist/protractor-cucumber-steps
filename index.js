@@ -129,7 +129,7 @@ module.exports = function () {
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${pageObjects[page][elem]} ${errors.CLICKABLE}`);
+            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(text);
         callback();
@@ -141,7 +141,7 @@ module.exports = function () {
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${pageObjects[page2][element2]} ${errors.CLICKABLE}`);
+            `"${pageObjects[page2][element2]}" ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
         inputField.sendKeys(pageObjects[page1][element1]);
         callback();
@@ -184,7 +184,7 @@ module.exports = function () {
 
         elmnt.getText().then(function (text) {
             if (text.indexOf(textPart) === -1) {
-                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+                throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
             } else {
                 callback();
             }
@@ -198,7 +198,7 @@ module.exports = function () {
 
         elmnt.getText().then(function (text) {
             if (text.indexOf(textPart) === -1) {
-                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+                throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
             } else {
                 callback();
             }
@@ -214,7 +214,7 @@ module.exports = function () {
             if (new RegExp(regexp).test(url)) {
                 callback();
             } else {
-                throw new Error(`${url} ${errors.REGEXP} ${regexp}`);
+                throw new Error(`"${url}" ${errors.REGEXP} /${regexp}/`);
             }
         });
     });
@@ -222,7 +222,7 @@ module.exports = function () {
     this.Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
         browser.getCurrentUrl().then(function (url) {
             if (url.indexOf(urlPart) === -1) {
-                throw new Error(`${url} ${errors.CONTAIN} ${urlPart}`);
+                throw new Error(`"${url}" ${errors.CONTAIN} "${urlPart}"`);
             } else {
                 callback();
             }
