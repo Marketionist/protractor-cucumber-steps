@@ -55,20 +55,23 @@ module.exports = function () {
     // #### When steps #############################################################
 
     this.When(/^I go to URL "([^"]*)"$/, function (url, callback) {
-        browser.get(url);
-        callback();
+        browser.get(url).then(function () {
+            callback();
+        });
     });
 
     this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const url = pageObjects[page][elem];
 
-        browser.get(url);
-        callback();
+        browser.get(url).then(function () {
+            callback();
+        });
     });
 
     this.When(/^I reload the page$/, function (callback) {
-        browser.refresh();
-        callback();
+        browser.refresh().then(function () {
+            callback();
+        });
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
@@ -77,8 +80,9 @@ module.exports = function () {
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        elmnt.click();
-        callback();
+        elmnt.click().then(function () {
+            callback();
+        });
     });
 
     this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
@@ -89,8 +93,9 @@ module.exports = function () {
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         setTimeout(function () {
-            elmnt.click();
-            callback();
+            elmnt.click().then(function () {
+                callback();
+            });
         }, timeToWait);
     });
 
@@ -100,8 +105,9 @@ module.exports = function () {
         elmnt.isPresent().then(function (isPresent) {
             if (isPresent) {
                 // Click only if element is present
-                elmnt.click();
+                return elmnt.click();
             }
+        }).then(function () {
             callback();
         });
     });
@@ -112,8 +118,9 @@ module.exports = function () {
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        browser.actions().mouseMove(elmnt).doubleClick().perform();
-        callback();
+        browser.actions().mouseMove(elmnt).doubleClick().perform().then(function () {
+            callback();
+        });
     });
 
     this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, callback) {
@@ -141,8 +148,9 @@ module.exports = function () {
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
             `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
-        inputField.sendKeys(text);
-        callback();
+        inputField.sendKeys(text).then(function () {
+            callback();
+        });
     });
 
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
@@ -153,8 +161,9 @@ module.exports = function () {
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
             `"${pageObjects[page2][element2]}" ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
-        inputField.sendKeys(pageObjects[page1][element1]);
-        callback();
+        inputField.sendKeys(pageObjects[page1][element1]).then(function () {
+            callback();
+        });
     });
 
     // #### Then steps #############################################################
