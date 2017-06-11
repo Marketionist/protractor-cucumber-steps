@@ -166,6 +166,15 @@ module.exports = function () {
         });
     });
 
+    this.When(/^I move to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        waitForDisplayed(elmnt);
+        browser.actions().mouseMove(elmnt).perform().then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #############################################################
 
     this.Then(/the title should be "([^"]*)"$/, function (text, callback) {
