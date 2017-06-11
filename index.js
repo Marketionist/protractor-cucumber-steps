@@ -175,6 +175,18 @@ module.exports = function () {
         });
     });
 
+    this.When(/^I move to "([^"]*)"."([^"]*)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
+            page, elem, offsetX, offsetY, callback) {
+        const elmnt = composeLocator(page, elem);
+        const integerX = parseInt(offsetX, 10) || 0;
+        const integerY = parseInt(offsetY, 10) || 0;
+
+        waitForDisplayed(elmnt);
+        browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform().then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #############################################################
 
     this.Then(/the title should be "([^"]*)"$/, function (text, callback) {
