@@ -75,6 +75,16 @@ Feature: Running Cucumber with Protractor
     And I wait and click "test2Page"."dropdownColors"
     Then "test2Page"."blockSelectedColor" text should be "test2Page"."textGold"
 
+  Scenario: Moving to element should trigger its hovered state
+    When I go to URL "http://localhost:8001/test1.html"
+    And I move to "testPage"."titleTest1"
+    Then "testPage"."blockTextTest" text should contain "testPage"."txtTest1"
+
+  Scenario: Moving to element with offset should trigger its hovered state
+    When I go to URL "http://localhost:8001/test1.html"
+    And I move to "testPage"."titleTest1" with an offset of x: 10px, y: 5px
+    Then "testPage"."blockTextTest" text should contain "testPage"."txtTest1"
+
   Scenario: Validate element text contains provided text (string)
     When I go to URL "http://localhost:8001/test1.html"
     Then "testPage"."linkTest2Page" text should contain "Test2"
