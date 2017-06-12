@@ -55,20 +55,23 @@ module.exports = function () {
     // #### When steps #############################################################
 
     this.When(/^I go to URL "([^"]*)"$/, function (url, callback) {
-        browser.get(url);
-        callback();
+        browser.get(url).then(function () {
+            callback();
+        });
     });
 
     this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const url = pageObjects[page][elem];
 
-        browser.get(url);
-        callback();
+        browser.get(url).then(function () {
+            callback();
+        });
     });
 
     this.When(/^I reload the page$/, function (callback) {
-        browser.refresh();
-        callback();
+        browser.refresh().then(function () {
+            callback();
+        });
     });
 
     this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
@@ -77,8 +80,9 @@ module.exports = function () {
         waitForDisplayed(elmnt);
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        elmnt.click();
-        callback();
+        elmnt.click().then(function () {
+            callback();
+        });
     });
 
     this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
@@ -89,8 +93,9 @@ module.exports = function () {
         browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
             `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         setTimeout(function () {
-            elmnt.click();
-            callback();
+            elmnt.click().then(function () {
+                callback();
+            });
         }, timeToWait);
     });
 
@@ -100,8 +105,20 @@ module.exports = function () {
         elmnt.isPresent().then(function (isPresent) {
             if (isPresent) {
                 // Click only if element is present
-                elmnt.click();
+                return elmnt.click();
             }
+        }).then(function () {
+            callback();
+        });
+    });
+
+    this.When(/^I double click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        waitForDisplayed(elmnt);
+        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+        browser.actions().mouseMove(elmnt).doubleClick().perform().then(function () {
             callback();
         });
     });
@@ -129,10 +146,11 @@ module.exports = function () {
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${pageObjects[page][elem]} ${errors.CLICKABLE}`);
+            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
-        inputField.sendKeys(text);
-        callback();
+        inputField.sendKeys(text).then(function () {
+            callback();
+        });
     });
 
     this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
@@ -141,10 +159,32 @@ module.exports = function () {
 
         waitForDisplayed(inputField);
         browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `${pageObjects[page2][element2]} ${errors.CLICKABLE}`);
+            `"${pageObjects[page2][element2]}" ${errors.CLICKABLE}`);
         browser.actions().mouseMove(inputField).click().perform();
-        inputField.sendKeys(pageObjects[page1][element1]);
-        callback();
+        inputField.sendKeys(pageObjects[page1][element1]).then(function () {
+            callback();
+        });
+    });
+
+    this.When(/^I move to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        waitForDisplayed(elmnt);
+        browser.actions().mouseMove(elmnt).perform().then(function () {
+            callback();
+        });
+    });
+
+    this.When(/^I move to "([^"]*)"."([^"]*)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
+            page, elem, offsetX, offsetY, callback) {
+        const elmnt = composeLocator(page, elem);
+        const integerX = parseInt(offsetX, 10) || 0;
+        const integerY = parseInt(offsetY, 10) || 0;
+
+        waitForDisplayed(elmnt);
+        browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform().then(function () {
+            callback();
+        });
     });
 
     // #### Then steps #############################################################
@@ -184,7 +224,7 @@ module.exports = function () {
 
         elmnt.getText().then(function (text) {
             if (text.indexOf(textPart) === -1) {
-                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+                throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
             } else {
                 callback();
             }
@@ -198,7 +238,7 @@ module.exports = function () {
 
         elmnt.getText().then(function (text) {
             if (text.indexOf(textPart) === -1) {
-                throw new Error(`${text} ${errors.CONTAIN} ${textPart}`);
+                throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
             } else {
                 callback();
             }
@@ -214,7 +254,7 @@ module.exports = function () {
             if (new RegExp(regexp).test(url)) {
                 callback();
             } else {
-                throw new Error(`${url} ${errors.REGEXP} ${regexp}`);
+                throw new Error(`"${url}" ${errors.REGEXP} /${regexp}/`);
             }
         });
     });
@@ -222,7 +262,7 @@ module.exports = function () {
     this.Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
         browser.getCurrentUrl().then(function (url) {
             if (url.indexOf(urlPart) === -1) {
-                throw new Error(`${url} ${errors.CONTAIN} ${urlPart}`);
+                throw new Error(`"${url}" ${errors.CONTAIN} "${urlPart}"`);
             } else {
                 callback();
             }

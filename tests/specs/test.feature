@@ -43,6 +43,12 @@ Feature: Running Cucumber with Protractor
     And I wait for 200 ms
     Then the title should be "Test1 Page"
 
+  Scenario: Double click on Page1 test page link should lead to Page2 test page
+    When I go to URL "http://localhost:8001/test1.html"
+    And I wait for 200 ms
+    And I double click "testPage"."linkTest2Page"
+    Then the title should be "Test2 Page"
+
   Scenario: Should wait for link to be present on Page1 test page
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for "testPage"."linkTest2Page" to be present
@@ -68,6 +74,16 @@ Feature: Running Cucumber with Protractor
     And I type "test2Page"."textGold" in the "test2Page"."dropdownColors"
     And I wait and click "test2Page"."dropdownColors"
     Then "test2Page"."blockSelectedColor" text should be "test2Page"."textGold"
+
+  Scenario: Moving to element should trigger its hovered state
+    When I go to URL "http://localhost:8001/test1.html"
+    And I move to "testPage"."titleTest1"
+    Then "testPage"."blockTextTest" text should contain "testPage"."txtTest1"
+
+  Scenario: Moving to element with offset should trigger its hovered state
+    When I go to URL "http://localhost:8001/test1.html"
+    And I move to "testPage"."titleTest1" with an offset of x: 10px, y: 5px
+    Then "testPage"."blockTextTest" text should contain "testPage"."txtTest1"
 
   Scenario: Validate element text contains provided text (string)
     When I go to URL "http://localhost:8001/test1.html"
