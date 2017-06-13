@@ -100,14 +100,26 @@ module.exports.config = {
             logsEnabled: 0,
             pages: {
                 '/test1.html': `<title>Test1 Page</title><a id="link-test2-page" href="
-                    http://localhost:8001/test2.html">Test2 page</a>`,
+                    http://localhost:8001/test2.html">Test2 page</a>
+                    <script>
+                        window.onload = function() {
+                            document.querySelector('h1').addEventListener("mouseover", function() {
+                                document.getElementById("text-test").innerHTML = 'Test 1 sample text';
+                            });
+                            document.querySelector('h1').addEventListener("mouseout", function() {
+                                document.getElementById("text-test").innerHTML = '';
+                            });
+                        }
+                    </script>
+                    <h1>Test1 page</h1>
+                    <p id="text-test"></p>`,
                 '/test2.html': `<title>Test2 Page</title>
                     <script>
                         window.onload = function() {
-                            document.getElementById("dropdown-colors").onchange = function() {
+                            document.getElementById("dropdown-colors").addEventListener("change", function() {
                                 document.getElementById("block-selected-color").innerHTML = document
                                     .getElementById("dropdown-colors").value;
-                            }
+                            });
                         }
                     </script>
                     <h1>Test2 page</h1>
