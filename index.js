@@ -7,6 +7,7 @@
  */
 // #############################################################################
 
+const { defineSupportCode } = require('cucumber');
 // Use the external Chai As Promised to deal with resolving promises in
 // expectations
 const chai = require('chai');
@@ -24,43 +25,44 @@ const customTimeout = browser.params.customTimeout || defaultCustomTimeout;
 const pageObjects = browser.params.pageObjects;
 const timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) ms' step
 
-module.exports = function () {
-    /**
-     * Waits for the element to be present and displayed on the page
-     * @param {string} elementSelector
-     */
-    function waitForDisplayed(elementSelector) {
-        browser.wait(EC.presenceOf(elementSelector), customTimeout,
-            errors.PRESENT);
-    }
-    /**
-     * Composes proper element locator for fuether actions
-     * @param {string} page
-     * @param {string} elem
-     * @returns {object} elmnt
-     */
-    function composeLocator(page, elem) {
-        const locator = pageObjects[page][elem];
-        let elmnt;
+/**
+ * Waits for the element to be present and displayed on the page
+ * @param {string} elementSelector
+ */
+function waitForDisplayed(elementSelector) {
+    browser.wait(EC.presenceOf(elementSelector), customTimeout,
+        errors.PRESENT);
+}
+/**
+ * Composes proper element locator for fuether actions
+ * @param {string} page
+ * @param {string} elem
+ * @returns {object} elmnt
+ */
+function composeLocator(page, elem) {
+    const locator = pageObjects[page][elem];
+    let elmnt;
 
-        if (locator[0] + locator[1] === '//') {
-            elmnt = element(by.xpath(locator));
-        } else {
-            elmnt = element(by.css(locator));
-        }
-
-        return elmnt;
+    if (locator[0] + locator[1] === '//') {
+        elmnt = element(by.xpath(locator));
+    } else {
+        elmnt = element(by.css(locator));
     }
 
-    // #### When steps #############################################################
+    return elmnt;
+}
 
-    this.When(/^I go to URL "([^"]*)"$/, function (url, callback) {
+defineSupportCode(function ({ Given, When, Then }) {
+
+    // #### When steps #########################################################
+
+    When(/^I go to URL "([^"]*)"$/, function (url, callback) {
         browser.get(url).then(function () {
             callback();
         });
     });
 
-    this.When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const url = pageObjects[page][elem];
 
         browser.get(url).then(function () {
@@ -68,13 +70,13 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I reload the page$/, function (callback) {
+    When(/^I reload the page$/, function (callback) {
         browser.refresh().then(function () {
             callback();
         });
     });
 
-    this.When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
@@ -85,7 +87,7 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
         const timeToWait = 300;
 
@@ -99,7 +101,7 @@ module.exports = function () {
         }, timeToWait);
     });
 
-    this.When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {
+    When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         elmnt.isPresent().then(function (isPresent) {
@@ -112,7 +114,7 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I double click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I double click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
@@ -123,11 +125,11 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, callback) {
+    When(/^I wait for (\d+) ms$/, { timeout: timeToWaitMax }, function (timeToWait, callback) {
         setTimeout(callback, timeToWait);
     });
 
-    this.When(/^I wait for "([^"]*)"."([^"]*)" to be present$/, function (page, elem, callback) {
+    When(/^I wait for "([^"]*)"."([^"]*)" to be present$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
@@ -140,7 +142,7 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+    When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             text, page, elem, callback) {
         const inputField = composeLocator(page, elem);
 
@@ -153,7 +155,7 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+    When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
         const inputField = composeLocator(page2, element2);
 
@@ -166,7 +168,7 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I move to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I move to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         waitForDisplayed(elmnt);
@@ -175,7 +177,7 @@ module.exports = function () {
         });
     });
 
-    this.When(/^I move to "([^"]*)"."([^"]*)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
+    When(/^I move to "([^"]*)"."([^"]*)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
             page, elem, offsetX, offsetY, callback) {
         const elmnt = composeLocator(page, elem);
         const integerX = parseInt(offsetX, 10) || 0;
@@ -187,31 +189,31 @@ module.exports = function () {
         });
     });
 
-    // #### Then steps #############################################################
+    // #### Then steps #########################################################
 
-    this.Then(/the title should be "([^"]*)"$/, function (text, callback) {
+    Then(/the title should be "([^"]*)"$/, function (text, callback) {
         expect(browser.getTitle()).to.eventually.equal(text).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, callback) {
+    Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         expect(elmnt.isPresent()).to.eventually.equal(true).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" should not be present$/, function (page, elem, callback) {
+    Then(/^"([^"]*)"."([^"]*)" should not be present$/, function (page, elem, callback) {
         const elmnt = composeLocator(page, elem);
 
         expect(elmnt.isPresent()).to.eventually.equal(false).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
+    Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
         const elmnt = composeLocator(page, elem);
 
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
+    Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
         const elmnt = composeLocator(page1, element1);
         const text = pageObjects[page2][element2];
@@ -219,7 +221,7 @@ module.exports = function () {
         expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
+    Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
         const elmnt = composeLocator(page, elem);
 
         elmnt.getText().then(function (text) {
@@ -231,7 +233,7 @@ module.exports = function () {
         });
     });
 
-    this.Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"$/, function (
+    Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
         const elmnt = composeLocator(page1, element1);
         const textPart = pageObjects[page2][element2];
@@ -245,11 +247,11 @@ module.exports = function () {
         });
     });
 
-    this.Then(/^URL should be "([^"]*)"$/, function (url, callback) {
+    Then(/^URL should be "([^"]*)"$/, function (url, callback) {
         expect(browser.getCurrentUrl()).to.eventually.equal(url).and.notify(callback);
     });
 
-    this.Then(/^URL should match \/([^"]*)\/$/, function (regexp, callback) {
+    Then(/^URL should match \/([^"]*)\/$/, function (regexp, callback) {
         browser.getCurrentUrl().then(function (url) {
             if (new RegExp(regexp).test(url)) {
                 callback();
@@ -259,7 +261,7 @@ module.exports = function () {
         });
     });
 
-    this.Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
+    Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
         browser.getCurrentUrl().then(function (url) {
             if (url.indexOf(urlPart) === -1) {
                 throw new Error(`"${url}" ${errors.CONTAIN} "${urlPart}"`);
@@ -270,7 +272,7 @@ module.exports = function () {
     });
 
     // Take a callback as an additional argument to execute when the step is done
-    this.Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
+    Then(/^the file "([^"]*)" is empty$/, function (fileName, callback) {
         fs.readFile(fileName, 'utf8', function (error, contents) {
             if (error) {
                 callback(error);
@@ -280,4 +282,4 @@ module.exports = function () {
         });
     });
 
-};
+});
