@@ -142,7 +142,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I type "([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+    When(/^I type "([^"]*)" in "([^"]*)"."([^"]*)"$/, function (
             text, page, elem, callback) {
         const inputField = composeLocator(page, elem);
 
@@ -155,7 +155,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I type "([^"]*)"."([^"]*)" in the "([^"]*)"."([^"]*)"$/, function (
+    When(/^I type "([^"]*)"."([^"]*)" in "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
         const inputField = composeLocator(page2, element2);
 
