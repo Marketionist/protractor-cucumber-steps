@@ -72,10 +72,13 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I click "..."."..."` - Click on any element (provided in "page"."object")
 - `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object")
 - `I click "..."."..." if present` - Click on any element (provided in "page"."object") only if it is present on the page
+- `I double click "..."."..."` - Double click on any element (provided in "page"."object")
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
 - `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js))
-- `I type "..." in the "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
-- `I type "..."."..." in the "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
+- `I type "..." in "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
+- `I type "..."."..." in "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
+- `I move to "..."."..."` - Move the mouse pointer over any element (hover an element provided in "page"."object" with cursor)
+- `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover an element provided in "page"."object" with cursor) with an offset of x: ...px, y: ...px
 
 ### Then steps
 - `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
