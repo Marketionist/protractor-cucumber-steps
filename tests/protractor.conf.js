@@ -143,7 +143,7 @@ module.exports.config = {
                     </select>`,
                 '/test-iframe.html': `<title>Test Page with iframe</title>
                     <h1>Test page with iframe</h1>
-                    <iframe src="test1.html" width="400" height="300" align="left">
+                    <iframe src="test1.html" id="iframe-test1" name="test iframe" width="400" height="300" align="left">
                         <p>Your browser does not support iframes</p>
                     </iframe>`
             }
