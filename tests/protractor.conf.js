@@ -140,7 +140,12 @@ module.exports.config = {
                         <option value="yellow">Yellow</option>
                         <option value="Gold">Gold</option>
                         <option value="orange">Orange</option>
-                    </select>`
+                    </select>`,
+                '/test-iframe.html': `<title>Test Page with iframe</title>
+                    <h1>Test page with iframe</h1>
+                    <iframe src="test1.html" width="400" height="300" align="left">
+                        <p>Your browser does not support iframes</p>
+                    </iframe>`
             }
         }
         // Start node testing server
