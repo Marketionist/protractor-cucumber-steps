@@ -66,28 +66,28 @@ You can also see the example of [`protractor.conf.js`](https://github.com/Market
 You can see the example of how to use predefined steps in [`test.feature`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/specs/test.feature)
 
 ### When steps
-- `I go to URL "..."` - Open a site (by its URL provided in "") in the current browser window/tab
+- `I go to URL "..."` - Open a site (by its URL provided in "" as a string) in the current browser window/tab
 - `I go to "..."."..."` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
 - `I reload the page` - Reload current page
-- `I click "..."."..."` - Click on any element (provided in "page"."object")
-- `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object")
-- `I click "..."."..." if present` - Click on any element (provided in "page"."object") only if it is present on the page
-- `I double click "..."."..."` - Double click on any element (provided in "page"."object")
+- `I click "..."."..."` - Click on any element (provided in "page"."object" as CSS or XPath selector)
+- `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object" as CSS or XPath selector)
+- `I click "..."."..." if present` - Click on any element (provided in "page"."object" as CSS or XPath selector) only if it is present on the page
+- `I double click "..."."..."` - Double click on any element (provided in "page"."object" as CSS or XPath selector)
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
-- `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object") to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js))
-- `I type "..." in "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in "page"."object")
-- `I type "..."."..." in "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2")
-- `I move to "..."."..."` - Move the mouse pointer over any element (hover an element provided in "page"."object" with cursor)
-- `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover an element provided in "page"."object" with cursor) with an offset of x: ...px, y: ...px
+- `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object" as CSS or XPath selector) to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js))
+- `I type "..." in "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in "page"."object" as CSS or XPath selector)
+- `I type "..."."..." in "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2" as CSS or XPath selector)
+- `I move to "..."."..."` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector)
+- `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector) with an offset of x: ...px, y: ...px
 
 ### Then steps
 - `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
-- `"..."."..." should be present` - Validate that element (provided in "page"."object") is present on the page
-- `"..."."..." should not be present` - Validate that element (provided in "page"."object") is not present on the page
-- `"..."."..." text should be "..."` - Validate that text of the element (provided in "page"."object") equals to the text (provided in "" as a string)
-- `"..."."..." text should be "..."."..."` - Validate that text of the element (provided in "page1"."object1") equals to the text (provided in "page2"."object2")
-- `"..."."..." text should contain "..."` - Validate that text of the element (provided in "page"."object") contains the text (provided in "" as a string)
-- `"..."."..." text should contain "..."."..."` - Validate that text of the element (provided in "page1"."object1") contains the text (provided in "page2"."object2")
+- `"..."."..." should be present` - Validate that element (provided in "page"."object" as CSS or XPath selector) is present on the page
+- `"..."."..." should not be present` - Validate that element (provided in "page"."object" as CSS or XPath selector) is not present on the page
+- `"..."."..." text should be "..."` - Validate that text of the element (provided in "page"."object" as CSS or XPath selector) equals to the text (provided in "" as a string)
+- `"..."."..." text should be "..."."..."` - Validate that text of the element (provided in "page1"."object1" as CSS or XPath selector) equals to the text (provided in "page2"."object2")
+- `"..."."..." text should contain "..."` - Validate that text of the element (provided in "page"."object" as CSS or XPath selector) contains the text (provided in "" as a string)
+- `"..."."..." text should contain "..."."..."` - Validate that text of the element (provided in "page1"."object1" as CSS or XPath selector) contains the text (provided in "page2"."object2")
 - `URL should be "..."` - Validate that URL of the current page equals to the text (provided in "" as a string)
 - `URL should match /.../` - Validate that URL of the current page matches the regular expression pattern (provided inside // like: /pattern/)
 - `URL should contain "..."` - Validate that URL of the current page contains the text (provided in "" as a string)
@@ -95,7 +95,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 
 ## How to comment out a line in the feature file
 You can add comments in `.feature` files using `#` for single line comments.
-Multiline (or block) comments are not supported in Gherkin out of the box (see https://github.com/cucumber/gherkin/issues/203), so you have to prefix all lines
+Multiline (or block) comments are not supported in Gherkin out of the box (see
+https://github.com/cucumber/gherkin/issues/203), so you have to prefix all lines
 with `#` like this:
 
 ```
