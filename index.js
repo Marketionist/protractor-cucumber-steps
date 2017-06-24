@@ -34,7 +34,7 @@ function waitForDisplayed(elementSelector) {
         errors.PRESENT);
 }
 /**
- * Composes proper element locator for fuether actions
+ * Composes proper element locator for further actions
  * @param {string} page
  * @param {string} elem
  * @returns {object} elmnt
@@ -185,6 +185,20 @@ defineSupportCode(function ({ Given, When, Then }) {
 
         waitForDisplayed(elmnt);
         browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform().then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to "([^"]*)"."([^"]*)" frame$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        browser.switchTo().frame(elmnt).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to default frame$/, function (callback) {
+        browser.switchTo().defaultContent().then(function () {
             callback();
         });
     });
