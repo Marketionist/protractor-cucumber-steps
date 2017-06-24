@@ -79,6 +79,9 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I type "..."."..." in "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2" as CSS or XPath selector)
 - `I move to "..."."..."` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector)
 - `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector) with an offset of x: ...px, y: ...px
+- `I switch to "..."."..." frame` - Switch the context to iframe (provided in "page"."object" as CSS or XPath selector)
+- `I switch to "..."."..." non angular frame` - Switch the context to non angular iframe (provided in "page"."object" as CSS or XPath selector)
+- `I switch to default frame` - Switch the context back to default (initial) frame
 
 ### Then steps
 - `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
