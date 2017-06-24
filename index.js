@@ -51,6 +51,24 @@ function composeLocator(page, elem) {
 
     return elmnt;
 }
+/**
+ * Composes proper WebdriverJS element locator (inherited from webdriver.By to work without Angular) for further actions
+ * @param {string} page
+ * @param {string} elem
+ * @returns {object} elmnt
+ */
+function composeLocatorWebdriver(page, elem) {
+    const locator = pageObjects[page][elem];
+    let elmnt;
+
+    if (locator[0] + locator[1] === '//') {
+        elmnt = browser.driver.findElement(by.xpath(locator));
+    } else {
+        elmnt = browser.driver.findElement(by.css(locator));
+    }
+
+    return elmnt;
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -193,6 +211,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         const elmnt = composeLocator(page, elem);
 
         browser.switchTo().frame(elmnt).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to "([^"]*)"."([^"]*)" non angular frame$/, function (page, elem, callback) {
+        const elmntWebdriver = composeLocatorWebdriver(page, elem);
+
+        browser.driver.switchTo().frame(elmntWebdriver).then(function () {
             callback();
         });
     });
