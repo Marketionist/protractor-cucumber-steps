@@ -4,7 +4,7 @@ module.exports = (function () {
 
     let iframePage = {
 
-        iframeTest1Page: 'iframe-test1'
+        iframeTest1Page: 'iframe#iframe-test1'
 
     };
 

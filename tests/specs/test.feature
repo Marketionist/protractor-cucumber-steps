@@ -104,3 +104,15 @@ Feature: Running Cucumber with Protractor
   Scenario: Validate current URL contains provided string
     When I go to URL "http://localhost:8001/test1.html"
     Then URL should contain "/test1.html"
+
+  Scenario: Switch to iframe should change the context to this iframe
+    When I go to URL "http://localhost:8001/test-iframe.html"
+    And I switch to "iframePage"."iframeTest1Page" non angular frame
+    Then "testPage"."linkTest2Page" should be present
+
+  Scenario: Switch to default frame should change the context to the main page
+    When I go to URL "http://localhost:8001/test-iframe.html"
+    And I switch to "iframePage"."iframeTest1Page" non angular frame
+    Then "testPage"."linkTest2Page" should be present
+    And I switch to default frame
+    And "testPage"."linkTest2Page" should not be present
