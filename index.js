@@ -34,7 +34,7 @@ function waitForDisplayed(elementSelector) {
         errors.PRESENT);
 }
 /**
- * Composes proper element locator for fuether actions
+ * Composes proper element locator for further actions
  * @param {string} page
  * @param {string} elem
  * @returns {object} elmnt
@@ -47,6 +47,24 @@ function composeLocator(page, elem) {
         elmnt = element(by.xpath(locator));
     } else {
         elmnt = element(by.css(locator));
+    }
+
+    return elmnt;
+}
+/**
+ * Composes proper WebdriverJS element locator (inherited from webdriver.By to work without Angular) for further actions
+ * @param {string} page
+ * @param {string} elem
+ * @returns {object} elmnt
+ */
+function composeLocatorWebdriver(page, elem) {
+    const locator = pageObjects[page][elem];
+    let elmnt;
+
+    if (locator[0] + locator[1] === '//') {
+        elmnt = browser.driver.findElement(by.xpath(locator));
+    } else {
+        elmnt = browser.driver.findElement(by.css(locator));
     }
 
     return elmnt;
@@ -185,6 +203,28 @@ defineSupportCode(function ({ Given, When, Then }) {
 
         waitForDisplayed(elmnt);
         browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform().then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to "([^"]*)"."([^"]*)" frame$/, function (page, elem, callback) {
+        const elmnt = composeLocator(page, elem);
+
+        browser.switchTo().frame(elmnt).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to "([^"]*)"."([^"]*)" non angular frame$/, function (page, elem, callback) {
+        const elmntWebdriver = composeLocatorWebdriver(page, elem);
+
+        browser.driver.switchTo().frame(elmntWebdriver).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to default frame$/, function (callback) {
+        browser.switchTo().defaultContent().then(function () {
             callback();
         });
     });
