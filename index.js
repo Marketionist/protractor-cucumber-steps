@@ -229,6 +229,25 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
+    When(/^I open new tab$/, function (callback) {
+        // Inject a link with target="_blank" to the current page
+        browser.driver.executeScript(function () {
+            document.body.innerHTML += '<a href="about:blank" id="link-to-open-new-tab" target="_blank">Link</a>';
+        }).then(function () {
+            // Click on injected link to open new tab
+            return element(by.id('link-to-open-new-tab')).click();
+        }).then(function () {
+            // Switch to new tab
+            return browser.getAllWindowHandles();
+        }).then(function (handles) {
+            let lastTabHandle = handles[handles.length - 1];
+
+            return browser.switchTo().window(lastTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #########################################################
 
     Then(/the title should be "([^"]*)"$/, function (text, callback) {
