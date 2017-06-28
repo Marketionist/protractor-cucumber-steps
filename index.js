@@ -262,6 +262,26 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
+    When(/^I switch to first tab$/, function (callback) {
+        browser.getAllWindowHandles().then(function (handles) {
+            let firstTabHandle = handles[0];
+
+            return browser.switchTo().window(firstTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to last tab$/, function (callback) {
+        browser.getAllWindowHandles().then(function (handles) {
+            let lastTabHandle = handles[handles.length - 1];
+
+            return browser.switchTo().window(lastTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #########################################################
 
     Then(/the title should be "([^"]*)"$/, function (text, callback) {
