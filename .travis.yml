@@ -1,6 +1,7 @@
 # http://docs.travis-ci.com/user/workers/container-based-infrastructure/
 sudo: required
 dist: trusty
+group: deprecated-2017Q2
 
 # http://docs.travis-ci.com/user/languages/javascript-with-nodejs/
 language: node_js
@@ -16,11 +17,6 @@ before_install:
  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
  # give xvfb some time to start
  - sleep 3
- - sudo apt-get clean
- - sudo rm -rf /var/cache/apt/*
- - sudo rm -rf /var/lib/apt/lists/*
- - wget -O - https://debian.neo4j.org/neotechnology.gpg.key | sudo apt-key add -
- - echo "deb https://debian.neo4j.org/repo stable/" | sudo tee /etc/apt/sources.list.d/neo4j.list
  - sudo apt-get update
  - sudo apt-get install -y libappindicator1 fonts-liberation
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
