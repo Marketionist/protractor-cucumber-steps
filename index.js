@@ -248,6 +248,20 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
+    When(/^I close current tab$/, function (callback) {
+        // Close current tab/window
+        browser.driver.close().then(function () {
+            // Switch to last active tab/window
+            return browser.getAllWindowHandles();
+        }).then(function (handles) {
+            let previousTabHandle = handles[handles.length - 1];
+
+            return browser.switchTo().window(previousTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #########################################################
 
     Then(/the title should be "([^"]*)"$/, function (text, callback) {
