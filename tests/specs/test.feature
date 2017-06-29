@@ -127,3 +127,24 @@ Feature: Running Cucumber with Protractor
     And I open new tab
     And I close current tab
     Then the title should be "Test1 Page"
+
+  Scenario: Switch to first tab should change the context to the first tab
+    When I go to URL "http://localhost:8001/test1.html"
+    And I open new tab
+    And I switch to first tab
+    Then the title should be "Test1 Page"
+    And I switch to last tab
+    And I close current tab
+
+  Scenario: Switch to last tab should change the context to the last tab
+    When I go to URL "http://localhost:8001/test1.html"
+    And I open new tab
+    And I go to URL "http://localhost:8001/test2.html"
+    And I open new tab
+    And I go to URL "http://localhost:8001/test-iframe.html"
+    And I switch to first tab
+    And the title should be "Test1 Page"
+    And I switch to last tab
+    Then the title should be "Test Page with iframe"
+    And I close current tab
+    And I close current tab
