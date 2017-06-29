@@ -116,3 +116,8 @@ Feature: Running Cucumber with Protractor
     Then "testPage"."linkTest2Page" should be present
     And I switch to default frame
     And "testPage"."linkTest2Page" should not be present
+
+  Scenario: Open new tab should change the context to the new tab
+    When I open new tab
+    Then URL should contain "about:blank"
+    And I close current tab
