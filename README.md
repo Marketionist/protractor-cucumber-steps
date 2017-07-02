@@ -82,6 +82,10 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I switch to "..."."..." frame` - Switch the context to iframe (provided in "page"."object" as CSS or XPath selector)
 - `I switch to "..."."..." non angular frame` - Switch the context to non angular iframe (provided in "page"."object" as CSS or XPath selector)
 - `I switch to default frame` - Switch the context back to default (initial) frame
+- `I open new tab` - Open new empty tab (via injecting a link with target="_blank" to the current page and clicking it) and switch the context to this new tab
+- `I close current tab` - Close current tab and switch the context to the last active tab/window
+- `I switch to first tab` - Switch the context to the first tab/window
+- `I switch to last tab` - Switch the context to the last tab/window
 
 ### Then steps
 - `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)

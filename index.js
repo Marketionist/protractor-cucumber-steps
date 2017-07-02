@@ -229,6 +229,59 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
+    When(/^I open new tab$/, function (callback) {
+        // Inject a link with target="_blank" to the current page
+        browser.driver.executeScript(function () {
+            document.body.innerHTML += '<a href="about:blank" id="link-to-open-new-tab" target="_blank">Link</a>';
+        }).then(function () {
+            // Click on injected link to open new tab
+            return element(by.id('link-to-open-new-tab')).click();
+        }).then(function () {
+            // Switch to new tab
+            return browser.getAllWindowHandles();
+        }).then(function (handles) {
+            let lastTabHandle = handles[handles.length - 1];
+
+            return browser.switchTo().window(lastTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I close current tab$/, function (callback) {
+        // Close current tab/window
+        browser.driver.close().then(function () {
+            // Switch to last active tab/window
+            return browser.getAllWindowHandles();
+        }).then(function (handles) {
+            let previousTabHandle = handles[handles.length - 1];
+
+            return browser.switchTo().window(previousTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to first tab$/, function (callback) {
+        browser.getAllWindowHandles().then(function (handles) {
+            let firstTabHandle = handles[0];
+
+            return browser.switchTo().window(firstTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I switch to last tab$/, function (callback) {
+        browser.getAllWindowHandles().then(function (handles) {
+            let lastTabHandle = handles[handles.length - 1];
+
+            return browser.switchTo().window(lastTabHandle);
+        }).then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #########################################################
 
     Then(/the title should be "([^"]*)"$/, function (text, callback) {
