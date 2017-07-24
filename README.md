@@ -30,7 +30,7 @@ plugin just:
 - add the path to protractor-cucumber-steps (in `cucumberOpts` -> `require`) inside `protractor.conf.js`;
 - add the path to your page object file (in `params` -> `pageObjects`) inside `protractor.conf.js`.
 
-Here is a short config example:
+Here is a short config example for `protractor.conf.js`:
 
 ```javascript
 exports.config = {
@@ -60,7 +60,7 @@ exports.config = {
 };
 ```
 
-You can also see the example of [`protractor.conf.js`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js)
+Also see [enhanced example of `protractor.conf.js`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js)
 
 ## List of predefined steps
 You can see the example of how to use predefined steps in [`test.feature`](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/specs/test.feature)
