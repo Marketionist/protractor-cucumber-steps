@@ -10,6 +10,7 @@ Cucumber steps (step definitions) written with Protractor for end-to-end tests
 [Node.js](http://nodejs.org/):
 - 6.x
 - 7.x
+- 8.x
 
 [Protractor](https://www.npmjs.com/package/protractor):
 - 4.x
