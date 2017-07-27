@@ -31,7 +31,7 @@ const timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) m
  */
 function waitForDisplayed(elementSelector) {
     browser.wait(EC.presenceOf(elementSelector), customTimeout,
-        errors.PRESENT);
+        errors.ELEMENT_PRESENT);
 }
 /**
  * Composes proper element locator for further actions
@@ -155,7 +155,7 @@ defineSupportCode(function ({ Given, When, Then }) {
             if (isPresent) {
                 callback();
             } else {
-                throw new Error(errors.PRESENT);
+                throw new Error(errors.ELEMENT_PRESENT);
             }
         });
     });
