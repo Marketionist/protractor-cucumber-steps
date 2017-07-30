@@ -148,3 +148,9 @@ Feature: Running Cucumber with Protractor
     Then the title should be "Test Page with iframe"
     And I close current tab
     And I close current tab
+
+  Scenario: Accepting browser alert should get the alert accepted
+    When I go to URL "http://localhost:8001/test-alert.html"
+    And I click "alertPage"."buttonLaunchAlert"
+    And I accept browser alert
+    Then "alertPage"."blockAlertStatus" text should be "alertPage"."textAlertAccepted"
