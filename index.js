@@ -290,6 +290,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
+    When(/^I dismiss browser alert$/, function (callback) {
+        // Waits for an alert to appear
+        browser.wait(EC.alertIsPresent(), customTimeout, errors.ALERT_PRESENT);
+        browser.switchTo().alert().dismiss().then(function () {
+            callback();
+        });
+    });
+
     // #### Then steps #########################################################
 
     Then(/the title should be "([^"]*)"$/, function (text, callback) {
