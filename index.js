@@ -31,7 +31,7 @@ const timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) m
  */
 function waitForDisplayed(elementSelector) {
     browser.wait(EC.presenceOf(elementSelector), customTimeout,
-        errors.PRESENT);
+        errors.ELEMENT_PRESENT);
 }
 /**
  * Composes proper element locator for further actions
@@ -155,7 +155,7 @@ defineSupportCode(function ({ Given, When, Then }) {
             if (isPresent) {
                 callback();
             } else {
-                throw new Error(errors.PRESENT);
+                throw new Error(errors.ELEMENT_PRESENT);
             }
         });
     });
@@ -278,6 +278,30 @@ defineSupportCode(function ({ Given, When, Then }) {
 
             return browser.switchTo().window(lastTabHandle);
         }).then(function () {
+            callback();
+        });
+    });
+
+    When(/^I accept browser alert$/, function (callback) {
+        // Waits for an alert to appear
+        browser.wait(EC.alertIsPresent(), customTimeout, errors.ALERT_PRESENT);
+        browser.switchTo().alert().accept().then(function () {
+            callback();
+        });
+    });
+
+    When(/^I dismiss browser alert$/, function (callback) {
+        // Waits for an alert to appear
+        browser.wait(EC.alertIsPresent(), customTimeout, errors.ALERT_PRESENT);
+        browser.switchTo().alert().dismiss().then(function () {
+            callback();
+        });
+    });
+
+    When(/^I authenticate in browser alert$/, function (login, password, callback) {
+        // Waits for an alert to appear
+        browser.wait(EC.alertIsPresent(), customTimeout, errors.ALERT_PRESENT);
+        browser.switchTo().alert().authenticateAs(login, password).then(function () {
             callback();
         });
     });

@@ -145,7 +145,24 @@ module.exports.config = {
                     <h1>Test page with iframe</h1>
                     <iframe src="test1.html" id="iframe-test1" name="test iframe" width="400" height="300" align="left">
                         <p>Your browser does not support iframes</p>
-                    </iframe>`
+                    </iframe>`,
+                '/test-alert.html': `<title>Test Page with alert</title>
+                    <script>
+                        window.onload = function() {
+                            document.getElementById("button-launch-alert").addEventListener("click", function() {
+                                let alertStatus;
+                                if (confirm("Accept (OK) or Dismiss (Cancel) - press a button!") == true) {
+                                    alertStatus = "Alert was accepted!";
+                                } else {
+                                    alertStatus = "Alert was canceled!";
+                                }
+                                document.getElementById("block-alert-status").innerHTML = alertStatus;
+                            });
+                        }
+                    </script>
+                    <h1>Test page with alert</h1>
+                    <button id="button-launch-alert">Launch alert</button>
+                    <p id="block-alert-status"></p>`
             }
         }
         // Start node testing server
