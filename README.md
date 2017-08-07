@@ -87,6 +87,7 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I close current tab` - Close current tab and switch the context to the last active tab/window
 - `I switch to first tab` - Switch the context to the first tab/window
 - `I switch to last tab` - Switch the context to the last tab/window
+- `I accept browser alert` - Accept (OK) browser alert
 
 ### Then steps
 - `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
