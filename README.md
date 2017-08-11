@@ -28,8 +28,8 @@ This package is used as plugin with
 [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework).
 It is quite simple to use - to get access to all Cucumber steps defined in this
 plugin just:
-- add the path to protractor-cucumber-steps (in `cucumberOpts` -> `require`) inside `protractor.conf.js`;
-- add the path to your page object file (in `params` -> `pageObjects`) inside `protractor.conf.js`.
+- add the path to protractor-cucumber-steps (in `cucumberOpts: {` `require:`) inside `protractor.conf.js`;
+- add the path to your page object file (in `params: {` `pageObjects:`) inside `protractor.conf.js`.
 
 Here is a short config example for `protractor.conf.js`:
 
@@ -87,6 +87,9 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I close current tab` - Close current tab and switch the context to the last active tab/window
 - `I switch to first tab` - Switch the context to the first tab/window
 - `I switch to last tab` - Switch the context to the last tab/window
+- `I accept browser alert` - Accept (OK) browser alert
+- `I dismiss browser alert` - Dismiss (Cancel) browser alert
+- `I authenticate in browser alert with login "..." and password "..."` - Authenticate in browser alert with login and password (provided in "" as strings)
 
 ### Then steps
 - `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)

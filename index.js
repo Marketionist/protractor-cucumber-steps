@@ -298,7 +298,8 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I authenticate in browser alert$/, function (login, password, callback) {
+    When(/^I authenticate in browser alert with login "([^"]*)" and password "([^"]*)"$/, function (
+            login, password, callback) {
         // Waits for an alert to appear
         browser.wait(EC.alertIsPresent(), customTimeout, errors.ALERT_PRESENT);
         browser.switchTo().alert().authenticateAs(login, password).then(function () {
