@@ -37,7 +37,7 @@ function waitForDisplayed(elementSelector) {
  * Composes proper element locator for further actions
  * @param {string} page
  * @param {string} elem
- * @returns {object} elmnt
+ * @returns {Object} elmnt
  */
 function composeLocator(page, elem) {
     const locator = pageObjects[page][elem];
@@ -55,7 +55,7 @@ function composeLocator(page, elem) {
  * Composes proper WebdriverJS element locator (inherited from webdriver.By to work without Angular) for further actions
  * @param {string} page
  * @param {string} elem
- * @returns {object} elmnt
+ * @returns {Object} elmnt
  */
 function composeLocatorWebdriver(page, elem) {
     const locator = pageObjects[page][elem];
@@ -69,6 +69,31 @@ function composeLocatorWebdriver(page, elem) {
 
     return elmnt;
 }
+/**
+ * Navigates to URL provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function goTo(page, elem) {
+    const url = pageObjects[page][elem];
+
+    return browser.get(url);
+}
+/**
+ * Clicks on element provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function clickOn(page, elem) {
+    const elmnt = composeLocator(page, elem);
+
+    waitForDisplayed(elmnt);
+    browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+        `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+    return elmnt.click();
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -81,9 +106,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        const url = pageObjects[page][elem];
+        goTo(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        browser.get(url).then(function () {
+    When(/^I go to ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+        goTo(page, elem).then(function () {
             callback();
         });
     });
@@ -95,12 +124,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        clickOn(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        waitForDisplayed(elmnt);
-        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        elmnt.click().then(function () {
+    When(/^I click ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+        clickOn(page, elem).then(function () {
             callback();
         });
     });
