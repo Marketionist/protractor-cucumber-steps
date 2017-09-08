@@ -9,6 +9,10 @@ Feature: Running Cucumber with Protractor
     When I go to URL "http://localhost:8001/test1.html"
     Then the title should be "Test1 Page"
 
+  Scenario: Go to URL should open corresponding page (text style step)
+    When I go to pageTest1 from testPage page
+    Then the title should be "Test1 Page"
+
   Scenario: Go to page should open corresponding page
     When I go to "testPage"."pageTest1"
     Then the title should be "Test1 Page"
@@ -22,6 +26,12 @@ Feature: Running Cucumber with Protractor
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for 200 ms
     And I click "testPage"."linkTest2Page"
+    Then the title should be "Test2 Page"
+
+  Scenario: Click on Page1 test page link should lead to Page2 test page (text style step)
+    When I go to URL "http://localhost:8001/test1.html"
+    And I wait for 200 ms
+    And I click linkTest2Page from testPage page
     Then the title should be "Test2 Page"
 
   Scenario: Wait and click on Page1 test page link should lead to Page2 test page
