@@ -68,9 +68,11 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 
 ### When steps
 - `I go to URL "..."` - Open a site (by its URL provided in "" as a string) in the current browser window/tab
-- `I go to "..."."..."` - Open a site (by its URL provided in "page"."object") in the current browser window/tab
+- `I go to "..."."..."` - Open a site (by its URL provided in **"page"."object"**) in the current browser window/tab
+- `I go to ... from ... page` - Open a site (by its URL provided in **object** from **page**) in the current browser window/tab
 - `I reload the page` - Reload current page
-- `I click "..."."..."` - Click on any element (provided in "page"."object" as CSS or XPath selector)
+- `I click "..."."..."` - Click on any element (provided in **"page"."object"** as CSS or XPath selector)
+- `I click ... from ... page` - Click on any element (provided in **object** from **page** as CSS or XPath selector)
 - `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object" as CSS or XPath selector)
 - `I click "..."."..." if present` - Click on any element (provided in "page"."object" as CSS or XPath selector) only if it is present on the page
 - `I double click "..."."..."` - Double click on any element (provided in "page"."object" as CSS or XPath selector)
