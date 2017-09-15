@@ -74,7 +74,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I click "..."."..."` - Click on any element (provided in **"page"."object"** as CSS or XPath selector)
 - `I click ... from ... page` - Click on any element (provided in **object** from **page** as CSS or XPath selector)
 - `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object" as CSS or XPath selector)
-- `I click "..."."..." if present` - Click on any element (provided in "page"."object" as CSS or XPath selector) only if it is present on the page
+- `I click "..."."..." if present` - Click on any element (provided in **"page"."object"** as CSS or XPath selector) only if it is present on the page
+- `I click ... from page ... if present` - Click on any element (provided in **object** from **page** as CSS or XPath selector) only if it is present on the page
 - `I double click "..."."..."` - Double click on any element (provided in "page"."object" as CSS or XPath selector)
 - `I wait for (\d+) ms` - Wait for provided amount of time (in milliseconds). Maximum value is 300000 (equals to 5 minutes)
 - `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object" as CSS or XPath selector) to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js))
