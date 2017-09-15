@@ -53,6 +53,20 @@ Feature: Running Cucumber with Protractor
     And I wait for 200 ms
     Then the title should be "Test1 Page"
 
+  Scenario: Link on Page1 test page should be clicked if it is visible and lead to Page2 test page (text style step)
+    When I go to pageTest1 from testPage page
+    And I wait for 200 ms
+    And I click linkTest2Page from testPage page if present
+    And I wait for 200 ms
+    Then the title should be "Test2 Page"
+
+  Scenario: Link on Page1 test page should not be clicked if it is not present (text style step)
+    When I go to pageTest1 from testPage page
+    And I wait for 200 ms
+    And I click linkInvisibleTest2Page from testPage page if present
+    And I wait for 200 ms
+    Then the title should be "Test1 Page"
+
   Scenario: Double click on Page1 test page link should lead to Page2 test page
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for 200 ms
