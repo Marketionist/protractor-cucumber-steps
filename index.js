@@ -94,6 +94,22 @@ function clickOn(page, elem) {
         `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
     return elmnt.click();
 }
+/**
+ * Clicks on element provided in page object only if it is present on the page
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function clickIfPresent(page, elem) {
+    const elmnt = composeLocator(page, elem);
+
+    return elmnt.isPresent().then(function (isPresent) {
+        if (isPresent) {
+            // Click only if element is present
+            return elmnt.click();
+        }
+    })
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -150,14 +166,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        clickIfPresent(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        elmnt.isPresent().then(function (isPresent) {
-            if (isPresent) {
-                // Click only if element is present
-                return elmnt.click();
-            }
-        }).then(function () {
+    When(/^I click ([^"]*) from ([^"]*) page if present$/, function (elem, page, callback) {
+        clickIfPresent(page, elem).then(function () {
             callback();
         });
     });
