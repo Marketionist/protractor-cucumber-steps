@@ -92,6 +92,7 @@ function clickOn(page, elem) {
     waitForDisplayed(elmnt);
     browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
         `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+
     return elmnt.click();
 }
 /**
@@ -110,6 +111,22 @@ function clickIfPresent(page, elem) {
         }
     })
 }
+/**
+ * Double clicks on element provided in page object only if it is present on the page
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function doubleClickOn(page, elem) {
+    const elmnt = composeLocator(page, elem);
+
+    waitForDisplayed(elmnt);
+    browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+        `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+
+    return browser.actions().mouseMove(elmnt).doubleClick().perform();
+}
+
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -178,12 +195,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I double click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        doubleClickOn(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        waitForDisplayed(elmnt);
-        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        browser.actions().mouseMove(elmnt).doubleClick().perform().then(function () {
+    When(/^I double click ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+        doubleClickOn(page, elem).then(function () {
             callback();
         });
     });
