@@ -73,6 +73,12 @@ Feature: Running Cucumber with Protractor
     And I double click "testPage"."linkTest2Page"
     Then the title should be "Test2 Page"
 
+  Scenario: Double click on Page1 test page link should lead to Page2 test page (text style step)
+    When I go to URL "http://localhost:8001/test1.html"
+    And I wait for 200 ms
+    And I double click linkTest2Page from testPage page
+    Then the title should be "Test2 Page"
+
   Scenario: Should wait for link to be present on Page1 test page
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for "testPage"."linkTest2Page" to be present
