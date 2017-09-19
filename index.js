@@ -126,7 +126,22 @@ function doubleClickOn(page, elem) {
 
     return browser.actions().mouseMove(elmnt).doubleClick().perform();
 }
+/**
+ * Type any text (provided in "" as a string) in the input field provided in page object
+ * @param {string} text
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function typeIn(text, page, elem) {
+    const inputField = composeLocator(page, elem);
 
+    waitForDisplayed(inputField);
+    browser.wait(EC.elementToBeClickable(inputField), customTimeout,
+        `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+    browser.actions().mouseMove(inputField).click().perform();
+    return inputField.sendKeys(text);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -225,13 +240,14 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     When(/^I type "([^"]*)" in "([^"]*)"."([^"]*)"$/, function (
             text, page, elem, callback) {
-        const inputField = composeLocator(page, elem);
+        typeIn(text, page, elem).then(function () {
+            callback();
+        });
+    });
 
-        waitForDisplayed(inputField);
-        browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        browser.actions().mouseMove(inputField).click().perform();
-        inputField.sendKeys(text).then(function () {
+    When(/^I type "([^"]*)" in ([^"]*) from ([^"]*) page$/, function (
+            text, elem, page, callback) {
+        typeIn(text, page, elem).then(function () {
             callback();
         });
     });
