@@ -140,7 +140,26 @@ function typeIn(text, page, elem) {
     browser.wait(EC.elementToBeClickable(inputField), customTimeout,
         `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
     browser.actions().mouseMove(inputField).click().perform();
+
     return inputField.sendKeys(text);
+}
+/**
+ * Type any text provided in page object in the input field provided in page object
+ * @param {string} page1
+ * @param {string} element1
+ * @param {string} page2
+ * @param {string} element2
+ * @returns {Promise} promise
+ */
+function typePageObjectIn(page1, element1, page2, element2) {
+    const inputField = composeLocator(page2, element2);
+
+    waitForDisplayed(inputField);
+    browser.wait(EC.elementToBeClickable(inputField), customTimeout,
+        `"${pageObjects[page2][element2]}" ${errors.CLICKABLE}`);
+    browser.actions().mouseMove(inputField).click().perform();
+
+    return inputField.sendKeys(pageObjects[page1][element1]);
 }
 
 defineSupportCode(function ({ Given, When, Then }) {
@@ -254,13 +273,14 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     When(/^I type "([^"]*)"."([^"]*)" in "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
-        const inputField = composeLocator(page2, element2);
+        typePageObjectIn(page1, element1, page2, element2).then(function () {
+            callback();
+        });
+    });
 
-        waitForDisplayed(inputField);
-        browser.wait(EC.elementToBeClickable(inputField), customTimeout,
-            `"${pageObjects[page2][element2]}" ${errors.CLICKABLE}`);
-        browser.actions().mouseMove(inputField).click().perform();
-        inputField.sendKeys(pageObjects[page1][element1]).then(function () {
+    When(/^I type ([^"]*) from ([^"]*) page in ([^"]*) from ([^"]*) page$/, function (
+            element1, page1, element2, page2, callback) {
+        typePageObjectIn(page1, element1, page2, element2).then(function () {
             callback();
         });
     });
