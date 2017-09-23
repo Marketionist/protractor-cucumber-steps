@@ -105,6 +105,12 @@ Feature: Running Cucumber with Protractor
     And I wait and click "test2Page"."dropdownColors"
     Then "test2Page"."blockSelectedColor" text should be "test2Page"."textGold"
 
+  Scenario: Typing "Green" (string) option text inside select dropdown should get this option selected (text style step)
+    When I go to "test2Page"."pageTest2"
+    And I type "Green" in dropdownColors from test2Page page
+    And I wait and click "test2Page"."dropdownColors"
+    Then "test2Page"."blockSelectedColor" text should be "green"
+
   Scenario: Moving to element should trigger its hovered state
     When I go to URL "http://localhost:8001/test1.html"
     And I move to "testPage"."titleTest1"
