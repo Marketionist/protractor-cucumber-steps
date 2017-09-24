@@ -161,6 +161,19 @@ function typePageObjectIn(page1, element1, page2, element2) {
 
     return inputField.sendKeys(pageObjects[page1][element1]);
 }
+/**
+ * Move the mouse pointer over any element provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function moveTo(page, elem) {
+    const elmnt = composeLocator(page, elem);
+
+    waitForDisplayed(elmnt);
+
+    return browser.actions().mouseMove(elmnt).perform();
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -286,10 +299,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I move to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        moveTo(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        waitForDisplayed(elmnt);
-        browser.actions().mouseMove(elmnt).perform().then(function () {
+    When(/^I move to ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+        moveTo(page, elem).then(function () {
             callback();
         });
     });
