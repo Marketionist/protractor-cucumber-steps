@@ -82,7 +82,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I wait for "..."."..." to be present` - Wait for element (provided in "page"."object" as CSS or XPath selector) to be present on the page (by default waits for 5000 ms, this time can be changed by specifying `params.customTimeout` inside `protractor.conf.js` - see the [example](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/tests/protractor.conf.js))
 - `I type "..." in "..."."..."` - Type any text (provided in "" as a string) in the input field (provided in **"page"."object"** as CSS or XPath selector)
 - `I type "..." in ... from ... page` - Type any text (provided in "" as a string) in the input field (provided in **object** from **page** as CSS or XPath selector)
-- `I type "..."."..." in "..."."..."` - Type any text (provided in "page1"."object1") in the input field (provided in "page2"."object2" as CSS or XPath selector)
+- `I type "..."."..." in "..."."..."` - Type any text (provided in **"page1"."object1"**) in the input field (provided in **"page2"."object2"** as CSS or XPath selector)
+- `I type ... from ... page in ... from ... page` - Type any text (provided in **object1** from **page1**) in the input field (provided in **object2** from **page2** as CSS or XPath selector)
 - `I move to "..."."..."` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector)
 - `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector) with an offset of x: ...px, y: ...px
 - `I switch to "..."."..." frame` - Switch the context to iframe (provided in "page"."object" as CSS or XPath selector)
