@@ -122,6 +122,11 @@ Feature: Running Cucumber with Protractor
     And I move to "testPage"."titleTest1"
     Then "testPage"."blockTextTest" text should contain "testPage"."txtTest1"
 
+  Scenario: Moving to element should trigger its hovered state (text style step)
+    When I go to URL "http://localhost:8001/test1.html"
+    And I move to titleTest1 from testPage page
+    Then "testPage"."blockTextTest" text should contain "testPage"."txtTest1"
+
   Scenario: Moving to element with offset should trigger its hovered state
     When I go to URL "http://localhost:8001/test1.html"
     And I move to "testPage"."titleTest1" with an offset of x: 10px, y: 5px
