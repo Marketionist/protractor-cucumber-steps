@@ -86,7 +86,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I type ... from ... page in ... from ... page` - Type any text (provided in **object1** from **page1**) in the input field (provided in **object2** from **page2** as CSS or XPath selector)
 - `I move to "..."."..."` - Move the mouse pointer over any element (hover with cursor an element provided in **"page"."object"** as CSS or XPath selector)
 - `I move to ... from ... page` - Move the mouse pointer over any element (hover with cursor an element provided in **object** from **page** as CSS or XPath selector)
-- `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover with cursor an element provided in "page"."object" as CSS or XPath selector) with an offset of x: ...px, y: ...px
+- `I move to "..."."..." with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover with cursor an element provided in **"page"."object"** as CSS or XPath selector) with an offset of x: ...px, y: ...px
+- `I move to ... from ... page with an offset of x: (\d+)px, y: (\d+)px` - Move the mouse pointer over any element (hover with cursor an element provided in **object** from **page** as CSS or XPath selector) with an offset of x: ...px, y: ...px
 - `I switch to "..."."..." frame` - Switch the context to iframe (provided in "page"."object" as CSS or XPath selector)
 - `I switch to "..."."..." non angular frame` - Switch the context to non angular iframe (provided in "page"."object" as CSS or XPath selector)
 - `I switch to default frame` - Switch the context back to default (initial) frame

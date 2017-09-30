@@ -174,6 +174,23 @@ function moveTo(page, elem) {
 
     return browser.actions().mouseMove(elmnt).perform();
 }
+/**
+ * Move the mouse pointer over any element (provided in page object) with an offset of x: ...px, y: ...px
+ * @param {string} page
+ * @param {string} elem
+ * @param {number} offsetX
+ * @param {number} offsetY
+ * @returns {Promise} promise
+ */
+function moveWithOffsetTo(page, elem, offsetX, offsetY) {
+    const elmnt = composeLocator(page, elem);
+    const integerX = parseInt(offsetX, 10) || 0;
+    const integerY = parseInt(offsetY, 10) || 0;
+
+    waitForDisplayed(elmnt);
+
+    return browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform();
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -312,12 +329,14 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     When(/^I move to "([^"]*)"."([^"]*)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
             page, elem, offsetX, offsetY, callback) {
-        const elmnt = composeLocator(page, elem);
-        const integerX = parseInt(offsetX, 10) || 0;
-        const integerY = parseInt(offsetY, 10) || 0;
+        moveWithOffsetTo(page, elem, offsetX, offsetY).then(function () {
+            callback();
+        });
+    });
 
-        waitForDisplayed(elmnt);
-        browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform().then(function () {
+    When(/^I move to ([^"]*) from ([^"]*) page with an offset of x: (\d+)px, y: (\d+)px$/, function (
+            elem, page, offsetX, offsetY, callback) {
+        moveWithOffsetTo(page, elem, offsetX, offsetY).then(function () {
             callback();
         });
     });
