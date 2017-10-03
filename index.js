@@ -191,6 +191,19 @@ function moveWithOffsetTo(page, elem, offsetX, offsetY) {
 
     return browser.actions().mouseMove(elmnt).mouseMove({ x: integerX, y: integerY }).perform();
 }
+/**
+ * Switch the context to iframe provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function switchToFrame(page, elem) {
+    const elmnt = composeLocator(page, elem);
+
+    waitForDisplayed(elmnt);
+
+    return browser.switchTo().frame(elmnt);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -342,9 +355,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I switch to "([^"]*)"."([^"]*)" frame$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        switchToFrame(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        browser.switchTo().frame(elmnt).then(function () {
+    When(/^I switch to ([^"]*) frame from ([^"]*) page$/, function (elem, page, callback) {
+        switchToFrame(page, elem).then(function () {
             callback();
         });
     });
