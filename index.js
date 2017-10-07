@@ -204,6 +204,17 @@ function switchToFrame(page, elem) {
 
     return browser.switchTo().frame(elmnt);
 }
+/**
+ * Switch the context to non angular iframe provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function switchToNonAngularFrame(page, elem) {
+    const elmntWebdriver = composeLocatorWebdriver(page, elem);
+
+    return browser.driver.switchTo().frame(elmntWebdriver);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -367,9 +378,13 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I switch to "([^"]*)"."([^"]*)" non angular frame$/, function (page, elem, callback) {
-        const elmntWebdriver = composeLocatorWebdriver(page, elem);
+        switchToNonAngularFrame(page, elem).then(function () {
+            callback();
+        });
+    });
 
-        browser.driver.switchTo().frame(elmntWebdriver).then(function () {
+    When(/^I switch to ([^"]*) non angular frame from ([^"]*) page$/, function (elem, page, callback) {
+        switchToNonAngularFrame(page, elem).then(function () {
             callback();
         });
     });

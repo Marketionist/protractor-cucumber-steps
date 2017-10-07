@@ -162,6 +162,11 @@ Feature: Running Cucumber with Protractor
     And I switch to "iframePage"."iframeTest1Page" non angular frame
     Then "testPage"."linkTest2Page" should be present
 
+  Scenario: Switch to iframe should change the context to this iframe (text style step)
+    When I go to URL "http://localhost:8001/test-iframe.html"
+    And I switch to iframeTest1Page non angular frame from iframePage page
+    Then "testPage"."linkTest2Page" should be present
+
   Scenario: Switch to default frame should change the context to the main page
     When I go to URL "http://localhost:8001/test-iframe.html"
     And I switch to "iframePage"."iframeTest1Page" non angular frame
