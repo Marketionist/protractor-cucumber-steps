@@ -22,6 +22,11 @@ Feature: Running Cucumber with Protractor
     And I reload the page
     Then "testPage"."linkTest2Page" should be present
 
+  Scenario: Reload the page should refresh the page (text style step)
+    When I go to "testPage"."pageTest1"
+    And I reload the page
+    Then linkTest2Page from testPage page should be present
+
   Scenario: Click on Page1 test page link should lead to Page2 test page
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for 200 ms
