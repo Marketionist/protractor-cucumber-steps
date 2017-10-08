@@ -102,17 +102,17 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I authenticate in browser alert with login "..." and password "..."` - Authenticate in browser alert with login and password (provided in "" as strings)
 
 ### Then steps
-- `the title should be "..."` - Validate that title of the current browser window/tab equals to the text (provided in "" as a string)
-- `"..."."..." should be present` - Validate that element (provided in "page"."object" as CSS or XPath selector) is present on the page
-- `"..."."..." should not be present` - Validate that element (provided in "page"."object" as CSS or XPath selector) is not present on the page
-- `"..."."..." text should be "..."` - Validate that text of the element (provided in "page"."object" as CSS or XPath selector) equals to the text (provided in "" as a string)
-- `"..."."..." text should be "..."."..."` - Validate that text of the element (provided in "page1"."object1" as CSS or XPath selector) equals to the text (provided in "page2"."object2")
-- `"..."."..." text should contain "..."` - Validate that text of the element (provided in "page"."object" as CSS or XPath selector) contains the text (provided in "" as a string)
-- `"..."."..." text should contain "..."."..."` - Validate that text of the element (provided in "page1"."object1" as CSS or XPath selector) contains the text (provided in "page2"."object2")
-- `URL should be "..."` - Validate that URL of the current page equals to the text (provided in "" as a string)
-- `URL should match /.../` - Validate that URL of the current page matches the regular expression pattern (provided inside // like: /pattern/)
-- `URL should contain "..."` - Validate that URL of the current page contains the text (provided in "" as a string)
-- `the file "..." is empty` - Validate that the file (with name provided in "" as a string) is empty
+- `the title should be "..."` - Verify that title of the current browser window/tab equals to the text (provided in "" as a string)
+- `"..."."..." should be present` - Verify that element (provided in "page"."object" as CSS or XPath selector) is present on the page
+- `"..."."..." should not be present` - Verify that element (provided in "page"."object" as CSS or XPath selector) is not present on the page
+- `"..."."..." text should be "..."` - Verify that text of the element (provided in "page"."object" as CSS or XPath selector) equals to the text (provided in "" as a string)
+- `"..."."..." text should be "..."."..."` - Verify that text of the element (provided in "page1"."object1" as CSS or XPath selector) equals to the text (provided in "page2"."object2")
+- `"..."."..." text should contain "..."` - Verify that text of the element (provided in "page"."object" as CSS or XPath selector) contains the text (provided in "" as a string)
+- `"..."."..." text should contain "..."."..."` - Verify that text of the element (provided in "page1"."object1" as CSS or XPath selector) contains the text (provided in "page2"."object2")
+- `URL should be "..."` - Verify that URL of the current page equals to the text (provided in "" as a string)
+- `URL should match /.../` - Verify that URL of the current page matches the regular expression pattern (provided inside // like: /pattern/)
+- `URL should contain "..."` - Verify that URL of the current page contains the text (provided in "" as a string)
+- `the file "..." is empty` - Verify that the file (with name provided in "" as a string) is empty
 
 ## How to comment out a line in the feature file
 You can add comments in `.feature` files using `#` for single line comments.
