@@ -103,7 +103,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 
 ### Then steps
 - `the title should be "..."` - Verify that title of the current browser window/tab equals to the text (provided in "" as a string)
-- `"..."."..." should be present` - Verify that element (provided in "page"."object" as CSS or XPath selector) is present on the page
+- `"..."."..." should be present` - Verify that element (provided in **"page"."object"** as CSS or XPath selector) is present on the page
+- `... from ... page should be present` - Verify that element (provided in **object** from **page** as CSS or XPath selector) is present on the page
 - `"..."."..." should not be present` - Verify that element (provided in "page"."object" as CSS or XPath selector) is not present on the page
 - `"..."."..." text should be "..."` - Verify that text of the element (provided in "page"."object" as CSS or XPath selector) equals to the text (provided in "" as a string)
 - `"..."."..." text should be "..."."..."` - Verify that text of the element (provided in "page1"."object1" as CSS or XPath selector) equals to the text (provided in "page2"."object2")
