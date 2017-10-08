@@ -215,6 +215,17 @@ function switchToNonAngularFrame(page, elem) {
 
     return browser.driver.switchTo().frame(elmntWebdriver);
 }
+/**
+ * Verify that element provided in page object is present on the page
+ * @param {string} page
+ * @param {string} elem
+ * @returns {Promise} promise
+ */
+function verifyPresent(page, elem) {
+    const elmnt = composeLocator(page, elem);
+
+    return expect(elmnt.isPresent()).to.eventually.equal(true);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -371,7 +382,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I switch to ([^"]*) frame from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I switch to ([a-zA-Z0-9_]+) frame from ([^"]*) page$/, function (elem, page, callback) {
         switchToFrame(page, elem).then(function () {
             callback();
         });
@@ -480,9 +491,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        verifyPresent(page, elem).and.notify(callback);
+    });
 
-        expect(elmnt.isPresent()).to.eventually.equal(true).and.notify(callback);
+    Then(/^([^"]*) from ([^"]*) page should be present$/, function (elem, page, callback) {
+        verifyPresent(page, elem).and.notify(callback);
     });
 
     Then(/^"([^"]*)"."([^"]*)" should not be present$/, function (page, elem, callback) {
