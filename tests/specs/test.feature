@@ -98,6 +98,11 @@ Feature: Running Cucumber with Protractor
     And I wait for 200 ms
     Then "testPage"."linkInvisibleTest2Page" should not be present
 
+  Scenario: Link on Page1 test page should not be present (text style step)
+    When I go to "testPage"."pageTest1"
+    And I wait for 200 ms
+    Then linkInvisibleTest2Page from testPage page should not be present
+
   Scenario: Typing "Green" (string) option text inside select dropdown should get this option selected
     When I go to "test2Page"."pageTest2"
     And I type "Green" in "test2Page"."dropdownColors"
