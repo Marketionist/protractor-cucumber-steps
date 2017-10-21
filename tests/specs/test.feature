@@ -113,7 +113,7 @@ Feature: Running Cucumber with Protractor
     When I go to "test2Page"."pageTest2"
     And I type "Green" in dropdownColors from test2Page page
     And I wait and click "test2Page"."dropdownColors"
-    Then "test2Page"."blockSelectedColor" text should be "green"
+    Then blockSelectedColor text from test2Page page should be "green"
 
   Scenario: Typing "Gold" (page object) option text inside select dropdown should get this option selected
     When I go to "test2Page"."pageTest2"

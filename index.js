@@ -237,6 +237,18 @@ function verifyNotPresent(page, elem) {
 
     return expect(elmnt.isPresent()).to.eventually.equal(false);
 }
+/**
+ * Verify that text of the element provided in page object equals to the text (provided in "" as a string)
+ * @param {string} page
+ * @param {string} elem
+ * @param {string} text
+ * @returns {Promise} promise
+ */
+function verifyText(page, elem, text) {
+    const elmnt = composeLocator(page, elem);
+
+    return expect(elmnt.getText()).to.eventually.equal(text);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -518,9 +530,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
-        const elmnt = composeLocator(page, elem);
+        verifyText(page, elem, text).and.notify(callback);
+    });
 
-        expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
+    Then(/^([^"]*) text from ([^"]*) page should be "([^"]*)"$/, function (elem, page, text, callback) {
+        verifyText(page, elem, text).and.notify(callback);
     });
 
     Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
