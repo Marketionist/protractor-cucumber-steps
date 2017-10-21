@@ -249,6 +249,20 @@ function verifyText(page, elem, text) {
 
     return expect(elmnt.getText()).to.eventually.equal(text);
 }
+/**
+ * Verify that text of the element provided in page object equals to the text provided in page object
+ * @param {string} page1
+ * @param {string} element1
+ * @param {string} page2
+ * @param {string} element2
+ * @returns {Promise} promise
+ */
+function verifyPageObjectText(page1, element1, page2, element2) {
+    const elmnt = composeLocator(page1, element1);
+    const text = pageObjects[page2][element2];
+
+    return expect(elmnt.getText()).to.eventually.equal(text);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -539,10 +553,12 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
             page1, element1, page2, element2, callback) {
-        const elmnt = composeLocator(page1, element1);
-        const text = pageObjects[page2][element2];
+        verifyPageObjectText(page1, element1, page2, element2).and.notify(callback);
+    });
 
-        expect(elmnt.getText()).to.eventually.equal(text).and.notify(callback);
+    Then(/^([^"]*) text from ([^"]*) page should be ([^"]*) from ([^"]*) page$/, function (
+            element1, page1, element2, page2, callback) {
+        verifyPageObjectText(page1, element1, page2, element2).and.notify(callback);
     });
 
     Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
