@@ -125,7 +125,7 @@ Feature: Running Cucumber with Protractor
     When I go to "test2Page"."pageTest2"
     And I type textGold from test2Page page in dropdownColors from test2Page page
     And I wait and click "test2Page"."dropdownColors"
-    Then "test2Page"."blockSelectedColor" text should be "test2Page"."textGold"
+    Then blockSelectedColor text from test2Page page should be textGold from test2Page page
 
   Scenario: Moving to element should trigger its hovered state
     When I go to URL "http://localhost:8001/test1.html"
