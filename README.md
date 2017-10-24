@@ -109,7 +109,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `... from ... page should not be present` - Verify that element (provided in **object** from **page** as CSS or XPath selector) is not present on the page
 - `"..."."..." text should be "..."` - Verify that text of the element (provided in **"page"."object"** as CSS or XPath selector) equals to the text (provided in "" as a string)
 - `... text from ... page should be "..."` - Verify that text of the element (provided in **object** from **page** as CSS or XPath selector) equals to the text (provided in "" as a string)
-- `"..."."..." text should be "..."."..."` - Verify that text of the element (provided in "page1"."object1" as CSS or XPath selector) equals to the text (provided in "page2"."object2")
+- `"..."."..." text should be "..."."..."` - Verify that text of the element (provided in **"page1"."object1"** as CSS or XPath selector) equals to the text (provided in **"page2"."object2"**)
+- `... text from ... page should be ... from ... page` - Verify that text of the element (provided in **object1** from **page1** as CSS or XPath selector) equals to the text (provided in **object2** from **page2**)
 - `"..."."..." text should contain "..."` - Verify that text of the element (provided in "page"."object" as CSS or XPath selector) contains the text (provided in "" as a string)
 - `"..."."..." text should contain "..."."..."` - Verify that text of the element (provided in "page1"."object1" as CSS or XPath selector) contains the text (provided in "page2"."object2")
 - `URL should be "..."` - Verify that URL of the current page equals to the text (provided in "" as a string)
