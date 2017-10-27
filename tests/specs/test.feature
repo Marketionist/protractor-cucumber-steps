@@ -151,6 +151,10 @@ Feature: Running Cucumber with Protractor
     When I go to URL "http://localhost:8001/test1.html"
     Then "testPage"."linkTest2Page" text should contain "Test2"
 
+  Scenario: Validate element text contains provided text (string) (text style step)
+    When I go to URL "http://localhost:8001/test1.html"
+    Then linkTest2Page text from testPage page should contain "Test2"
+
   Scenario: Validate element text contains provided text (page object)
     When I go to URL "http://localhost:8001/test1.html"
     Then "testPage"."linkTest2Page" text should contain "testPage"."txtTest2"
