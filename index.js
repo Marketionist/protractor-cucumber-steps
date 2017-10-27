@@ -263,6 +263,24 @@ function verifyPageObjectText(page1, element1, page2, element2) {
 
     return expect(elmnt.getText()).to.eventually.equal(text);
 }
+/**
+ * Verify that text of the element provided in page object contains the text provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @param {string} textPart
+ * @param {function} callback
+ */
+function verifyTextContains(page, elem, textPart, callback) {
+    const elmnt = composeLocator(page, elem);
+
+    elmnt.getText().then(function (text) {
+        if (text.indexOf(textPart) === -1) {
+            throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
+        } else {
+            callback();
+        }
+    });
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -562,15 +580,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
-        const elmnt = composeLocator(page, elem);
+        verifyTextContains(page, elem, textPart, callback);
+    });
 
-        elmnt.getText().then(function (text) {
-            if (text.indexOf(textPart) === -1) {
-                throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
-            } else {
-                callback();
-            }
-        });
+    Then(/^([^"]*) text from ([^"]*) page should contain "([^"]*)"$/, function (elem, page, textPart, callback) {
+        verifyTextContains(page, elem, textPart, callback);
     });
 
     Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"$/, function (
