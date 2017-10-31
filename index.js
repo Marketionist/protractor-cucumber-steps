@@ -127,6 +127,24 @@ function doubleClickOn(page, elem) {
     return browser.actions().mouseMove(elmnt).doubleClick().perform();
 }
 /**
+ * Wait for element provided in page object to be present on the page
+ * @param {string} page
+ * @param {string} elem
+ * @param {function} callback
+ */
+function waitForPresent(page, elem, callback) {
+    const elmnt = composeLocator(page, elem);
+
+    waitForDisplayed(elmnt);
+    elmnt.isPresent().then(function (isPresent) {
+        if (isPresent) {
+            callback();
+        } else {
+            throw new Error(errors.ELEMENT_PRESENT);
+        }
+    });
+}
+/**
  * Type any text (provided in "" as a string) in the input field provided in page object
  * @param {string} text
  * @param {string} page
@@ -365,16 +383,11 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I wait for "([^"]*)"."([^"]*)" to be present$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
+        waitForPresent(page, elem, callback);
+    });
 
-        waitForDisplayed(elmnt);
-        elmnt.isPresent().then(function (isPresent) {
-            if (isPresent) {
-                callback();
-            } else {
-                throw new Error(errors.ELEMENT_PRESENT);
-            }
-        });
+    When(/^I wait for ([^"]*) from ([^"]*) page to be present$/, function (elem, page, callback) {
+        waitForPresent(page, elem, callback);
     });
 
     When(/^I type "([^"]*)" in "([^"]*)"."([^"]*)"$/, function (

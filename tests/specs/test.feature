@@ -88,6 +88,10 @@ Feature: Running Cucumber with Protractor
     When I go to URL "http://localhost:8001/test1.html"
     And I wait for "testPage"."linkTest2Page" to be present
 
+  Scenario: Should wait for link to be present on Page1 test page (text style step)
+    When I go to URL "http://localhost:8001/test1.html"
+    And I wait for linkTest2Page from testPage page to be present
+
   Scenario: Link on Page1 test page should be present
     When I go to "testPage"."pageTest1"
     And I wait for "testPage"."linkTest2Page" to be present
