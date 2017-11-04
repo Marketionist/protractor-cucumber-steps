@@ -192,6 +192,11 @@ Feature: Running Cucumber with Protractor
     And I switch to default frame
     And "testPage"."linkTest2Page" should not be present
 
+  Scenario: Execute script should change the content on the page
+    When I go to URL "http://localhost:8001/test1.html"
+    And I execute "document.getElementById('text-test').innerHTML = 'Text to test script execution';"
+    Then "testPage"."blockTextTest" text should contain "Text to test script execution"
+
   Scenario: Open new tab should change the context to the new tab
     When I open new tab
     Then URL should contain "about:blank"

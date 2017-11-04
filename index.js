@@ -474,10 +474,17 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
+    When(/^I execute "([^"]*)"$/, function (script, callback) {
+        browser.driver.executeScript(script).then(function () {
+            callback();
+        });
+    });
+
     When(/^I open new tab$/, function (callback) {
         // Inject a link with target="_blank" to the current page
         browser.driver.executeScript(function () {
             document.body.innerHTML += '<a href="about:blank" id="link-to-open-new-tab" target="_blank">Link</a>';
+            return document.body.innerHTML;
         }).then(function () {
             // Click on injected link to open new tab
             return element(by.id('link-to-open-new-tab')).click();
