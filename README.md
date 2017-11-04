@@ -94,6 +94,7 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I switch to "..."."..." non angular frame` - Switch the context to non angular iframe (provided in **"page"."object"** as CSS or XPath selector)
 - `I switch to ... non angular frame from ... page` - Switch the context to non angular iframe (provided in **object** from **page** as CSS or XPath selector)
 - `I switch to default frame` - Switch the context back to default (initial) frame
+- `I execute "..."` - Execute script (JavaScript code) provided in "" as a string
 - `I open new tab` - Open new empty tab (via injecting a link with target="_blank" to the current page and clicking it) and switch the context to this new tab
 - `I close current tab` - Close current tab and switch the context to the last active tab/window
 - `I switch to first tab` - Switch the context to the first tab/window
