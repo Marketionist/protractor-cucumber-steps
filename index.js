@@ -96,6 +96,25 @@ function clickOn(page, elem) {
     return elmnt.click();
 }
 /**
+ * Waits for 300 ms and then licks on element provided in page object
+ * @param {string} page
+ * @param {string} elem
+ * @param {function} callback
+ */
+function waitAndClickOn(page, elem, callback) {
+    const elmnt = composeLocator(page, elem);
+    const timeToWait = 300;
+
+    waitForDisplayed(elmnt);
+    browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
+        `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
+    setTimeout(function () {
+        elmnt.click().then(function () {
+            callback();
+        });
+    }, timeToWait);
+}
+/**
  * Clicks on element provided in page object only if it is present on the page
  * @param {string} page
  * @param {string} elem
@@ -340,18 +359,12 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I wait and click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
-        const elmnt = composeLocator(page, elem);
-        const timeToWait = 300;
+    When(/^I wait and click "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (page, elem, callback) {
+        waitAndClickOn(page, elem, callback);
+    });
 
-        waitForDisplayed(elmnt);
-        browser.wait(EC.elementToBeClickable(elmnt), customTimeout,
-            `"${pageObjects[page][elem]}" ${errors.CLICKABLE}`);
-        setTimeout(function () {
-            elmnt.click().then(function () {
-                callback();
-            });
-        }, timeToWait);
+    When(/^I wait and click ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
+        waitAndClickOn(page, elem, callback);
     });
 
     When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {

@@ -73,7 +73,8 @@ You can see the example of how to use predefined steps in [`test.feature`](https
 - `I reload the page` - Reload current page
 - `I click "..."."..."` - Click on any element (provided in **"page"."object"** as CSS or XPath selector)
 - `I click ... from ... page` - Click on any element (provided in **object** from **page** as CSS or XPath selector)
-- `I wait and click "..."."..."` - Wait for 300 ms and click on any element (provided in "page"."object" as CSS or XPath selector)
+- `I wait and click "..."."..."` - Wait for 300 ms and then click on any element (provided in **"page"."object"** as CSS or XPath selector)
+- `I wait and click ... from ... page` - Wait for 300 ms and then click on any element (provided in **object** from **page** as CSS or XPath selector)
 - `I click "..."."..." if present` - Click on any element (provided in **"page"."object"** as CSS or XPath selector) only if it is present on the page
 - `I click ... from page ... if present` - Click on any element (provided in **object** from **page** as CSS or XPath selector) only if it is present on the page
 - `I double click "..."."..."` - Double click on any element (provided in **"page"."object"** as CSS or XPath selector)
