@@ -329,13 +329,13 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I go to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I go to "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (page, elem, callback) {
         goTo(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I go to ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I go to ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
         goTo(page, elem).then(function () {
             callback();
         });
@@ -347,13 +347,13 @@ defineSupportCode(function ({ Given, When, Then }) {
         });
     });
 
-    When(/^I click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I click "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (page, elem, callback) {
         clickOn(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I click ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I click ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
         clickOn(page, elem).then(function () {
             callback();
         });
@@ -367,25 +367,25 @@ defineSupportCode(function ({ Given, When, Then }) {
         waitAndClickOn(page, elem, callback);
     });
 
-    When(/^I click "([^"]*)"."([^"]*)" if present$/, function (page, elem, callback) {
+    When(/^I click "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" if present$/, function (page, elem, callback) {
         clickIfPresent(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I click ([^"]*) from ([^"]*) page if present$/, function (elem, page, callback) {
+    When(/^I click ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page if present$/, function (elem, page, callback) {
         clickIfPresent(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I double click "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I double click "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (page, elem, callback) {
         doubleClickOn(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I double click ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I double click ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
         doubleClickOn(page, elem).then(function () {
             callback();
         });
@@ -395,87 +395,87 @@ defineSupportCode(function ({ Given, When, Then }) {
         setTimeout(callback, timeToWait);
     });
 
-    When(/^I wait for "([^"]*)"."([^"]*)" to be present$/, function (page, elem, callback) {
+    When(/^I wait for "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" to be present$/, function (page, elem, callback) {
         waitForPresent(page, elem, callback);
     });
 
-    When(/^I wait for ([^"]*) from ([^"]*) page to be present$/, function (elem, page, callback) {
+    When(/^I wait for ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page to be present$/, function (elem, page, callback) {
         waitForPresent(page, elem, callback);
     });
 
-    When(/^I type "([^"]*)" in "([^"]*)"."([^"]*)"$/, function (
+    When(/^I type "([^"]*)" in "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
             text, page, elem, callback) {
         typeIn(text, page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I type "([^"]*)" in ([^"]*) from ([^"]*) page$/, function (
+    When(/^I type "([^"]*)" in ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (
             text, elem, page, callback) {
         typeIn(text, page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I type "([^"]*)"."([^"]*)" in "([^"]*)"."([^"]*)"$/, function (
+    When(/^I type "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" in "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
             page1, element1, page2, element2, callback) {
         typePageObjectIn(page1, element1, page2, element2).then(function () {
             callback();
         });
     });
 
-    When(/^I type ([^"]*) from ([^"]*) page in ([^"]*) from ([^"]*) page$/, function (
+    When(/^I type ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page in ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (
             element1, page1, element2, page2, callback) {
         typePageObjectIn(page1, element1, page2, element2).then(function () {
             callback();
         });
     });
 
-    When(/^I move to "([^"]*)"."([^"]*)"$/, function (page, elem, callback) {
+    When(/^I move to "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (page, elem, callback) {
         moveTo(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I move to ([^"]*) from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I move to ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
         moveTo(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I move to "([^"]*)"."([^"]*)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
+    When(/^I move to "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
             page, elem, offsetX, offsetY, callback) {
         moveWithOffsetTo(page, elem, offsetX, offsetY).then(function () {
             callback();
         });
     });
 
-    When(/^I move to ([^"]*) from ([^"]*) page with an offset of x: (\d+)px, y: (\d+)px$/, function (
+    When(/^I move to ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page with an offset of x: (\d+)px, y: (\d+)px$/, function (
             elem, page, offsetX, offsetY, callback) {
         moveWithOffsetTo(page, elem, offsetX, offsetY).then(function () {
             callback();
         });
     });
 
-    When(/^I switch to "([^"]*)"."([^"]*)" frame$/, function (page, elem, callback) {
+    When(/^I switch to "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" frame$/, function (page, elem, callback) {
         switchToFrame(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I switch to ([a-zA-Z0-9_]+) frame from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I switch to ([a-zA-Z0-9_]+) frame from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
         switchToFrame(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I switch to "([^"]*)"."([^"]*)" non angular frame$/, function (page, elem, callback) {
+    When(/^I switch to "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" non angular frame$/, function (page, elem, callback) {
         switchToNonAngularFrame(page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I switch to ([^"]*) non angular frame from ([^"]*) page$/, function (elem, page, callback) {
+    When(/^I switch to ([a-zA-Z0-9_]+) non angular frame from ([a-zA-Z0-9_]+) page$/, function (elem, page, callback) {
         switchToNonAngularFrame(page, elem).then(function () {
             callback();
         });
@@ -578,49 +578,52 @@ defineSupportCode(function ({ Given, When, Then }) {
         expect(browser.getTitle()).to.eventually.equal(text).and.notify(callback);
     });
 
-    Then(/^"([^"]*)"."([^"]*)" should be present$/, function (page, elem, callback) {
+    Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" should be present$/, function (page, elem, callback) {
         verifyPresent(page, elem).and.notify(callback);
     });
 
-    Then(/^([^"]*) from ([^"]*) page should be present$/, function (elem, page, callback) {
+    Then(/^([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page should be present$/, function (elem, page, callback) {
         verifyPresent(page, elem).and.notify(callback);
     });
 
-    Then(/^"([^"]*)"."([^"]*)" should not be present$/, function (page, elem, callback) {
+    Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" should not be present$/, function (page, elem, callback) {
         verifyNotPresent(page, elem).and.notify(callback);
     });
 
-    Then(/^([^"]*) from ([^"]*) page should not be present$/, function (elem, page, callback) {
+    Then(/^([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page should not be present$/, function (elem, page, callback) {
         verifyNotPresent(page, elem).and.notify(callback);
     });
 
-    Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
+    Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should be "([^"]*)"$/, function (page, elem, text, callback) {
         verifyText(page, elem, text).and.notify(callback);
     });
 
-    Then(/^([^"]*) text from ([^"]*) page should be "([^"]*)"$/, function (elem, page, text, callback) {
+    Then(/^([a-zA-Z0-9_]+) text from ([a-zA-Z0-9_]+) page should be "([^"]*)"$/, function (elem, page, text, callback) {
         verifyText(page, elem, text).and.notify(callback);
     });
 
-    Then(/^"([^"]*)"."([^"]*)" text should be "([^"]*)"."([^"]*)"$/, function (
+    Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should be "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
             page1, element1, page2, element2, callback) {
         verifyPageObjectText(page1, element1, page2, element2).and.notify(callback);
     });
 
-    Then(/^([^"]*) text from ([^"]*) page should be ([^"]*) from ([^"]*) page$/, function (
-            element1, page1, element2, page2, callback) {
-        verifyPageObjectText(page1, element1, page2, element2).and.notify(callback);
-    });
+    Then(/^([a-zA-Z0-9_]+) text from ([a-zA-Z0-9_]+) page should be ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/,
+        function (element1, page1, element2, page2, callback) {
+            verifyPageObjectText(page1, element1, page2, element2).and.notify(callback);
+        }
+    );
 
-    Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"$/, function (page, elem, textPart, callback) {
+    Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should contain "([^"]*)"$/, function (
+            page, elem, textPart, callback) {
         verifyTextContains(page, elem, textPart, callback);
     });
 
-    Then(/^([^"]*) text from ([^"]*) page should contain "([^"]*)"$/, function (elem, page, textPart, callback) {
+    Then(/^([a-zA-Z0-9_]+) text from ([a-zA-Z0-9_]+) page should contain "([^"]*)"$/, function (
+            elem, page, textPart, callback) {
         verifyTextContains(page, elem, textPart, callback);
     });
 
-    Then(/^"([^"]*)"."([^"]*)" text should contain "([^"]*)"."([^"]*)"$/, function (
+    Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should contain "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
             page1, element1, page2, element2, callback) {
         const elmnt = composeLocator(page1, element1);
         const textPart = pageObjects[page2][element2];
