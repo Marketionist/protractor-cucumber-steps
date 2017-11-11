@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.1.0
+
+**New text style steps release**
+
+Details:
+
+- added new text style steps '... element from ... page'
+- added some new steps
+- added e2e tests
+
 ## v1.0.0
 
 **First release version**
@@ -14,5 +24,5 @@ Details:
 
 ## TODO
 
-Add the usage of [protractor-testability-plugin](https://github.com/alfonso-presa/protractor-testability-plugin) to upgrade the
-testing with protractor even when not using AngularJS
+- add real world usage examples
+- add the usage of [protractor-testability-plugin](https://github.com/alfonso-presa/protractor-testability-plugin) to upgrade the testing with protractor even when not using AngularJS
