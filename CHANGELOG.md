@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.1.1
+
+**Adding node 9 for tests**
+
+Details:
+
+- [added support for node.js 9.x](https://github.com/Marketionist/protractor-cucumber-steps/pull/47)
+
 ## v1.1.0
 
 **New text style steps release**
