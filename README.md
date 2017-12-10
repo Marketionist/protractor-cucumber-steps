@@ -17,6 +17,10 @@ Cucumber steps (step definitions) written with Protractor for end-to-end tests
 - 4.x
 - 5.x
 
+[Cucumber](https://www.npmjs.com/package/cucumber):
+- 2.x
+- 3.x
+
 ## Installation
 To install this package and add it to your package.json just run:
 ```
@@ -145,5 +149,4 @@ to help you get started
 
 ## Thanks
 If this plugin was helpful for you, please give it a **★ Star** on
-[Github](https://github.com/Marketionist/protractor-cucumber-steps) and
-[npm](https://www.npmjs.com/package/protractor-cucumber-steps)
+[Github](https://github.com/Marketionist/protractor-cucumber-steps)
