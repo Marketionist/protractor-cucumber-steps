@@ -33,12 +33,23 @@ module.exports.config = {
         'specs/**/*.feature' // accepts a glob
     ],
     cucumberOpts: {
-        // Require step definitions
-        require: [
+        // Require step definition files before executing features
+        'require': [
             'step_definitions/**/*.js', // accepts a glob
             '../index.js',
-            '../node_modules/.bin/protractor-cucumber-steps/index.js'
-        ]
+            '../node_modules/protractor-cucumber-steps/index.js'
+        ],
+        // <string[]> (type[:path]) specify the output format, optionally supply PATH to redirect formatter output
+        'format': 'node_modules/cucumber-pretty',
+        'format-options': '{ "pretty": { "summary": true, "passed": true } }',
+        // <string[]> (expression) only execute the features or scenarios with tags matching the expression
+        'tags': [],
+        // <boolean> fail if there are any undefined or pending steps
+        'strict': true,
+        // <boolean> invoke formatters without executing steps
+        'dry-run': false,
+        // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE
+        'compiler': []
     },
     // Time of retries looking for angular exceeded - timeout in milliseconds
     getPageTimeout: 10000,
