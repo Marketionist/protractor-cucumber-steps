@@ -44,7 +44,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "cucumber": "^3.1.0",
+    "cucumber": "^3.2.0",
     "cucumber-pretty": "0.0.5",
     "eslint": "^3.17.1",
     "node-testing-server": "^1.1.1",
