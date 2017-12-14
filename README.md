@@ -54,7 +54,7 @@ exports.config = {
     cucumberOpts: {
         // require step definitions
         require: [
-            './node_modules/.bin/protractor-cucumber-steps/index.js', // path to protractor-cucumber-steps
+            './node_modules/protractor-cucumber-steps/index.js', // path to protractor-cucumber-steps
             'path/to/your/step/definitions/**/*.steps.js' // accepts a glob
         ]
     },
