@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.2.0
+
+**Adding cucumber 3 support**
+
+Details:
+
+- [updated importing and enabling instructions](https://github.com/Marketionist/protractor-cucumber-steps/pull/51)
+- [added cucumber-pretty reporter](https://github.com/Marketionist/protractor-cucumber-steps/pull/50)
+- [updated dependencies to include cucumber 3.x and added push tags](https://github.com/Marketionist/protractor-cucumber-steps/pull/49)
+
 ## v1.1.1
 
 **Adding node 9 for tests**
