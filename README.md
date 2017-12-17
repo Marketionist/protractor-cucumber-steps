@@ -33,8 +33,8 @@ This package is used as plugin with
 [protractor-cucumber-framework](https://www.npmjs.com/package/protractor-cucumber-framework).
 It is quite simple to use - to get access to all Cucumber steps defined in this
 plugin just:
-- add the path to protractor-cucumber-steps (in `cucumberOpts: {` `require:`) inside `protractor.conf.js`;
-- add the path to your page object file (in `params: {` `pageObjects:`) inside `protractor.conf.js`.
+- add the path to protractor-cucumber-steps in `cucumberOpts: {` `require: ...` inside `protractor.conf.js`;
+- add the path to your page object file in `params: {` `pageObjects: ...` inside `protractor.conf.js`.
 
 Here is a short config example for `protractor.conf.js`:
 
