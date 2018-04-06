@@ -25,7 +25,15 @@ module.exports.config = {
                 'credentials_enable_service': false,
                 'password_manager_enabled': false
             }
-        }
+        },
+        // Number of times to run this set of capabilities (in parallel, unless limited by maxSessions). Default is 1
+        count: 1,
+        // If this is set to be true, specs will be sharded by file (i.e. all files to be run by this set of
+        // capabilities will run in parallel). Default is false
+        shardTestFiles: true,
+        // Maximum number of browser instances that can run in parallel for this set of capabilities. This is only
+        // needed if shardTestFiles is true. Default is 1
+        maxInstances: 2
     },
 
     // Spec patterns are relative to this directory
