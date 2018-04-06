@@ -159,7 +159,7 @@ function waitForPresent(page, elem, callback) {
         if (isPresent) {
             callback();
         } else {
-            throw new Error(errors.ELEMENT_PRESENT);
+            callback(new Error(errors.ELEMENT_PRESENT));
         }
     });
 }
@@ -312,7 +312,7 @@ function verifyTextContains(page, elem, textPart, callback) {
 
     elmnt.getText().then(function (text) {
         if (text.indexOf(textPart) === -1) {
-            throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
+            callback(new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`));
         } else {
             callback();
         }
@@ -630,7 +630,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
         elmnt.getText().then(function (text) {
             if (text.indexOf(textPart) === -1) {
-                throw new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`);
+                callback(new Error(`"${text}" ${errors.CONTAIN} "${textPart}"`));
             } else {
                 callback();
             }
@@ -646,7 +646,7 @@ defineSupportCode(function ({ Given, When, Then }) {
             if (new RegExp(regexp).test(url)) {
                 callback();
             } else {
-                throw new Error(`"${url}" ${errors.REGEXP} /${regexp}/`);
+                callback(new Error(`"${url}" ${errors.REGEXP} /${regexp}/`));
             }
         });
     });
@@ -654,7 +654,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     Then(/^URL should contain "([^"]*)"$/, function (urlPart, callback) {
         browser.getCurrentUrl().then(function (url) {
             if (url.indexOf(urlPart) === -1) {
-                throw new Error(`"${url}" ${errors.CONTAIN} "${urlPart}"`);
+                callback(new Error(`"${url}" ${errors.CONTAIN} "${urlPart}"`));
             } else {
                 callback();
             }
