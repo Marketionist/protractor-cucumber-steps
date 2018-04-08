@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.3.0
+
+**Adding cucumber 4 support**
+
+Details:
+
+- [bumped up devDependencies](https://github.com/Marketionist/protractor-cucumber-steps/pull/55)
+- [added steps errors to callback](https://github.com/Marketionist/protractor-cucumber-steps/pull/54)
+- [split tests on 2 feature files](https://github.com/Marketionist/protractor-cucumber-steps/pull/53)
+
 ## v1.2.0
 
 **Adding cucumber 3 support**
