@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.2
+
+**Fix for webdriver-manager update issue in postinstall**
+
+Details:
+
+- [fixed webdriver-manager update issue for postinstall](https://github.com/Marketionist/protractor-cucumber-steps/pull/60)
+
 ## v1.3.1
 
 **Adding node 10 for tests**
