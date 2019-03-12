@@ -13,6 +13,7 @@ Cucumber steps (step definitions) written with Protractor for end-to-end tests
 - 8.x
 - 9.x
 - 10.x
+- 11.x
 
 [Protractor](https://www.npmjs.com/package/protractor):
 - 4.x
@@ -22,6 +23,7 @@ Cucumber steps (step definitions) written with Protractor for end-to-end tests
 - 2.x
 - 3.x
 - 4.x
+- 5.x
 
 ## Installation
 To install this package and add it to your package.json just run:
