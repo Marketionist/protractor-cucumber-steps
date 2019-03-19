@@ -12,6 +12,18 @@ While not absolutely required, it is encouraged that you first open an
 for any bug or feature request. This allows discussion on the proper course of
 action to take before coding begins.
 
+## Code Style Guide
+
+In case your editor does not respect `.editorconfig`, here is a summary of rules:
+
+- spacing - use spaces not tabs
+  - 4 spaces for `.js` files
+  - 2 spaces for `package.json`, `.yml` and other configuration files that start with a `.`
+- semicolons - mandatory
+- quotes - single-quote
+- syntax - ES6/ES2015
+- variable declarations - use `const` and `let`
+
 ## Building
 
 ```shell
