@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.3
+
+**Updated cucumber, protractor and protractor-cucumber-framework dependencies**
+
+Details:
+
+- [updated supported versions, added Code Style Guide](https://github.com/Marketionist/protractor-cucumber-steps/pull/63)
+- [updated cucumber to ^5.1.0, protractor to ^5.4.2, protractor-cucumber-framework to ^6.1.1](https://github.com/Marketionist/protractor-cucumber-steps/pull/62)
+
 ## v1.3.2
 
 **Fix for webdriver-manager update issue in postinstall**
