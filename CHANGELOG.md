@@ -6,6 +6,7 @@
 
 Details:
 
+- [added node 11 to run tests over](https://github.com/Marketionist/protractor-cucumber-steps/pull/65)
 - [updated supported versions, added Code Style Guide](https://github.com/Marketionist/protractor-cucumber-steps/pull/63)
 - [updated cucumber to ^5.1.0, protractor to ^5.4.2, protractor-cucumber-framework to ^6.1.1](https://github.com/Marketionist/protractor-cucumber-steps/pull/62)
 
