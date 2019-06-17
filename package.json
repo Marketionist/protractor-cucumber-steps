@@ -46,7 +46,7 @@
     "chai-as-promised": "^6.0.0",
     "cucumber": "^5.1.0",
     "cucumber-pretty": "0.0.5",
-    "eslint": "^3.17.1",
+    "eslint": "^5.16.0",
     "node-testing-server": "^1.2.2",
     "protractor": "^5.4.2",
     "protractor-cucumber-framework": "^6.1.1"
