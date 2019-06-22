@@ -29,7 +29,7 @@ const timeToWaitMax = 300100; // Maximum time to wait for in 'I wait for (\d+) m
  * Waits for the element to be present and displayed on the page
  * @param {string} elementSelector
  */
-function waitForDisplayed(elementSelector) {
+function waitForDisplayed (elementSelector) {
     browser.wait(EC.presenceOf(elementSelector), customTimeout,
         errors.ELEMENT_PRESENT);
 }
@@ -39,7 +39,7 @@ function waitForDisplayed(elementSelector) {
  * @param {string} elem
  * @returns {Object} elmnt
  */
-function composeLocator(page, elem) {
+function composeLocator (page, elem) {
     const locator = pageObjects[page][elem];
     let elmnt;
 
@@ -57,7 +57,7 @@ function composeLocator(page, elem) {
  * @param {string} elem
  * @returns {Object} elmnt
  */
-function composeLocatorWebdriver(page, elem) {
+function composeLocatorWebdriver (page, elem) {
     const locator = pageObjects[page][elem];
     let elmnt;
 
@@ -75,7 +75,7 @@ function composeLocatorWebdriver(page, elem) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function goTo(page, elem) {
+function goTo (page, elem) {
     const url = pageObjects[page][elem];
 
     return browser.get(url);
@@ -86,7 +86,7 @@ function goTo(page, elem) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function clickOn(page, elem) {
+function clickOn (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     waitForDisplayed(elmnt);
@@ -101,7 +101,7 @@ function clickOn(page, elem) {
  * @param {string} elem
  * @param {function} callback
  */
-function waitAndClickOn(page, elem, callback) {
+function waitAndClickOn (page, elem, callback) {
     const elmnt = composeLocator(page, elem);
     const timeToWait = 300;
 
@@ -120,7 +120,7 @@ function waitAndClickOn(page, elem, callback) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function clickIfPresent(page, elem) {
+function clickIfPresent (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     return elmnt.isPresent().then(function (isPresent) {
@@ -136,7 +136,7 @@ function clickIfPresent(page, elem) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function doubleClickOn(page, elem) {
+function doubleClickOn (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     waitForDisplayed(elmnt);
@@ -151,7 +151,7 @@ function doubleClickOn(page, elem) {
  * @param {string} elem
  * @param {function} callback
  */
-function waitForPresent(page, elem, callback) {
+function waitForPresent (page, elem, callback) {
     const elmnt = composeLocator(page, elem);
 
     waitForDisplayed(elmnt);
@@ -170,7 +170,7 @@ function waitForPresent(page, elem, callback) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function typeIn(text, page, elem) {
+function typeIn (text, page, elem) {
     const inputField = composeLocator(page, elem);
 
     waitForDisplayed(inputField);
@@ -188,7 +188,7 @@ function typeIn(text, page, elem) {
  * @param {string} element2
  * @returns {Promise} promise
  */
-function typePageObjectIn(page1, element1, page2, element2) {
+function typePageObjectIn (page1, element1, page2, element2) {
     const inputField = composeLocator(page2, element2);
 
     waitForDisplayed(inputField);
@@ -204,7 +204,7 @@ function typePageObjectIn(page1, element1, page2, element2) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function moveTo(page, elem) {
+function moveTo (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     waitForDisplayed(elmnt);
@@ -219,7 +219,7 @@ function moveTo(page, elem) {
  * @param {number} offsetY
  * @returns {Promise} promise
  */
-function moveWithOffsetTo(page, elem, offsetX, offsetY) {
+function moveWithOffsetTo (page, elem, offsetX, offsetY) {
     const elmnt = composeLocator(page, elem);
     const integerX = parseInt(offsetX, 10) || 0;
     const integerY = parseInt(offsetY, 10) || 0;
@@ -234,7 +234,7 @@ function moveWithOffsetTo(page, elem, offsetX, offsetY) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function switchToFrame(page, elem) {
+function switchToFrame (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     waitForDisplayed(elmnt);
@@ -247,7 +247,7 @@ function switchToFrame(page, elem) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function switchToNonAngularFrame(page, elem) {
+function switchToNonAngularFrame (page, elem) {
     const elmntWebdriver = composeLocatorWebdriver(page, elem);
 
     return browser.driver.switchTo().frame(elmntWebdriver);
@@ -258,7 +258,7 @@ function switchToNonAngularFrame(page, elem) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function verifyPresent(page, elem) {
+function verifyPresent (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     return expect(elmnt.isPresent()).to.eventually.equal(true);
@@ -269,7 +269,7 @@ function verifyPresent(page, elem) {
  * @param {string} elem
  * @returns {Promise} promise
  */
-function verifyNotPresent(page, elem) {
+function verifyNotPresent (page, elem) {
     const elmnt = composeLocator(page, elem);
 
     return expect(elmnt.isPresent()).to.eventually.equal(false);
@@ -281,7 +281,7 @@ function verifyNotPresent(page, elem) {
  * @param {string} text
  * @returns {Promise} promise
  */
-function verifyText(page, elem, text) {
+function verifyText (page, elem, text) {
     const elmnt = composeLocator(page, elem);
 
     return expect(elmnt.getText()).to.eventually.equal(text);
@@ -294,7 +294,7 @@ function verifyText(page, elem, text) {
  * @param {string} element2
  * @returns {Promise} promise
  */
-function verifyPageObjectText(page1, element1, page2, element2) {
+function verifyPageObjectText (page1, element1, page2, element2) {
     const elmnt = composeLocator(page1, element1);
     const text = pageObjects[page2][element2];
 
@@ -307,7 +307,7 @@ function verifyPageObjectText(page1, element1, page2, element2) {
  * @param {string} textPart
  * @param {function} callback
  */
-function verifyTextContains(page, elem, textPart, callback) {
+function verifyTextContains (page, elem, textPart, callback) {
     const elmnt = composeLocator(page, elem);
 
     elmnt.getText().then(function (text) {
@@ -403,29 +403,27 @@ defineSupportCode(function ({ Given, When, Then }) {
         waitForPresent(page, elem, callback);
     });
 
-    When(/^I type "([^"]*)" in "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
-            text, page, elem, callback) {
+    When(/^I type "([^"]*)" in "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (text, page, elem, callback) {
         typeIn(text, page, elem).then(function () {
             callback();
         });
     });
 
-    When(/^I type "([^"]*)" in ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (
-            text, elem, page, callback) {
+    When(/^I type "([^"]*)" in ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (text, elem, page, callback) {
         typeIn(text, page, elem).then(function () {
             callback();
         });
     });
 
     When(/^I type "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" in "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
-            page1, element1, page2, element2, callback) {
+            page1, element1, page2, element2, callback) { // eslint-disable-line indent
         typePageObjectIn(page1, element1, page2, element2).then(function () {
             callback();
         });
     });
 
     When(/^I type ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page in ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page$/, function (
-            element1, page1, element2, page2, callback) {
+            element1, page1, element2, page2, callback) { // eslint-disable-line indent
         typePageObjectIn(page1, element1, page2, element2).then(function () {
             callback();
         });
@@ -444,14 +442,14 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I move to "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" with an offset of x: (\d+)px, y: (\d+)px$/, function (
-            page, elem, offsetX, offsetY, callback) {
+            page, elem, offsetX, offsetY, callback) { // eslint-disable-line indent
         moveWithOffsetTo(page, elem, offsetX, offsetY).then(function () {
             callback();
         });
     });
 
     When(/^I move to ([a-zA-Z0-9_]+) from ([a-zA-Z0-9_]+) page with an offset of x: (\d+)px, y: (\d+)px$/, function (
-            elem, page, offsetX, offsetY, callback) {
+            elem, page, offsetX, offsetY, callback) { // eslint-disable-line indent
         moveWithOffsetTo(page, elem, offsetX, offsetY).then(function () {
             callback();
         });
@@ -564,7 +562,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^I authenticate in browser alert with login "([^"]*)" and password "([^"]*)"$/, function (
-            login, password, callback) {
+            login, password, callback) { // eslint-disable-line indent
         // Waits for an alert to appear
         browser.wait(EC.alertIsPresent(), customTimeout, errors.ALERT_PRESENT);
         browser.switchTo().alert().authenticateAs(login, password).then(function () {
@@ -603,7 +601,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should be "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
-            page1, element1, page2, element2, callback) {
+            page1, element1, page2, element2, callback) { // eslint-disable-line indent
         verifyPageObjectText(page1, element1, page2, element2).and.notify(callback);
     });
 
@@ -614,17 +612,17 @@ defineSupportCode(function ({ Given, When, Then }) {
     );
 
     Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should contain "([^"]*)"$/, function (
-            page, elem, textPart, callback) {
+            page, elem, textPart, callback) { // eslint-disable-line indent
         verifyTextContains(page, elem, textPart, callback);
     });
 
     Then(/^([a-zA-Z0-9_]+) text from ([a-zA-Z0-9_]+) page should contain "([^"]*)"$/, function (
-            elem, page, textPart, callback) {
+            elem, page, textPart, callback) { // eslint-disable-line indent
         verifyTextContains(page, elem, textPart, callback);
     });
 
     Then(/^"([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)" text should contain "([a-zA-Z0-9_]+)"."([a-zA-Z0-9_]+)"$/, function (
-            page1, element1, page2, element2, callback) {
+            page1, element1, page2, element2, callback) { // eslint-disable-line indent
         const elmnt = composeLocator(page1, element1);
         const textPart = pageObjects[page2][element2];
 
