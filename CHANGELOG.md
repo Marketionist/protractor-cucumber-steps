@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.4
+
+**Updated eslint dependency and added node 12**
+
+Details:
+
+- [updated eslint dependency and added node 12](https://github.com/Marketionist/protractor-cucumber-steps/pull/66)
+
 ## v1.3.3
 
 **Updated cucumber, protractor and protractor-cucumber-framework dependencies**
