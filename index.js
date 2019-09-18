@@ -1,5 +1,4 @@
 'use strict';
-/* global browser, expect, element, by, EC */
 /* eslint new-cap: 0 */ // --> OFF for Given, When, Then
 
 /*
