@@ -7,7 +7,7 @@
     "node": ">=6.9.x"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/webdriver-manager update",
+    "postinstall": "cd ./node_modules/protractor && npm install webdriver-manager@latest && cd ../.. && node_modules/.bin/webdriver-manager update",
     "lint": "node_modules/.bin/eslint *.js tests/**/*.js",
     "test": "node_modules/.bin/protractor tests/protractor.conf.js",
     "patch": "npm version patch -m \"Bumped up package version to %s\" && git push && git push origin --tags && npm publish",
@@ -46,9 +46,9 @@
     "chai-as-promised": "^6.0.0",
     "cucumber": "^5.1.0",
     "cucumber-pretty": "0.0.5",
-    "eslint": "^5.16.0",
+    "eslint": "^6.5.1",
     "node-testing-server": "^1.2.2",
     "protractor": "^5.4.2",
-    "protractor-cucumber-framework": "^6.1.1"
+    "protractor-cucumber-framework": "^6.1.3"
   }
 }

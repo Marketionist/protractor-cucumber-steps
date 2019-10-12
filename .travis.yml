@@ -5,8 +5,6 @@ dist: trusty
 # http://docs.travis-ci.com/user/languages/javascript-with-nodejs/
 language: node_js
 node_js:
-  - "6"
-  - "7"
   - "8"
   - "9"
   - "10"
@@ -22,6 +20,7 @@ before_install:
  # give xvfb some time to start
  - sleep 3
  - sudo apt-get update
+ - sudo apt-get install -y dpkg  # to upgrade to dpkg >= 1.17.5ubuntu5.8, which fixes https://bugs.launchpad.net/ubuntu/+source/dpkg/+bug/1730627
  - sudo apt-get install -y libappindicator1 fonts-liberation
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
  - sudo dpkg -i google-chrome*.deb
