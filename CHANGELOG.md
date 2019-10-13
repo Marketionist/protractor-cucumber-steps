@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.5
+
+**Updated eslint dependency and added node 12**
+
+Details:
+
+- [updated eslint to 6.5.1, protractor-cucumber-framework to 6.1.3](https://github.com/Marketionist/protractor-cucumber-steps/pull/68)
+- [bump lodash from 4.17.11 to 4.17.15](https://github.com/Marketionist/protractor-cucumber-steps/pull/70)
+
 ## v1.3.4
 
 **Updated eslint dependency and added node 12**
