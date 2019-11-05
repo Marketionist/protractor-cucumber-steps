@@ -2,7 +2,7 @@
 
 ## v1.3.5
 
-**Updated eslint dependency and added node 12**
+**Updated eslint, protractor-cucumber-framework, lodash dependencies**
 
 Details:
 
