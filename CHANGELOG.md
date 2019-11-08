@@ -2,11 +2,11 @@
 
 ## v1.3.6
 
-**Updated eslint, protractor-cucumber-framework, lodash dependencies**
+**Updated test server dependency**
 
 Details:
 
-- [updated test server dependency](https://github.com/Marketionist/protractor-cucumber-steps/pull/72)
+- [updated node-testing-server to 1.3.1](https://github.com/Marketionist/protractor-cucumber-steps/pull/72)
 
 ## v1.3.5
 
