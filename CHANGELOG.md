@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.3.7
+
+**Updated postinstall script to work on Windows**
+
+Details:
+
+- [updated postinstall script to work on Windows](https://github.com/Marketionist/protractor-cucumber-steps/pull/76)
+
 ## v1.3.6
 
 **Updated test server dependency**
