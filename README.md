@@ -15,6 +15,8 @@ Cucumber steps (step definitions) written with Protractor for end-to-end tests
 - 10.x
 - 11.x
 - 12.x
+- 13.x
+- 14.x
 
 [Protractor](https://www.npmjs.com/package/protractor):
 - 4.x
@@ -148,9 +150,11 @@ Scenario: Commit to open source should be joyful
 ```
 
 ## Contributing
-You are welcome to contribute - please see
+You are welcome to contribute to this repository - here is
 [CONTRIBUTING.md](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/CONTRIBUTING.md)
-to help you get started
+to help you get started. It is not mandatory, so you can just create a pull
+request and we will help you refine it along the way
+
 
 ## Thanks
 If this plugin was helpful for you, please give it a **★ Star** on
