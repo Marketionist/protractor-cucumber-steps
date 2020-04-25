@@ -52,6 +52,10 @@
     "protractor-cucumber-framework": "^6.2.1"
   },
   "peerDependencies": {
-    "protractor": ">=4.0.0"
+    "chai": ">=3.4.1",
+    "chai-as-promised": ">=5.2.0",
+    "cucumber": ">=1.0.0",
+    "protractor": ">=4.0.10",
+    "protractor-cucumber-framework": ">=0.6.0"
   }
 }
