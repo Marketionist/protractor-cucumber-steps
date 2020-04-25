@@ -42,16 +42,20 @@
   "author": "Dmytro Shpakovskyi",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "cucumber": "^5.1.0",
-    "cucumber-pretty": "0.0.5",
-    "eslint": "^6.5.1",
-    "node-testing-server": "^1.3.1",
-    "protractor": "^5.4.2",
-    "protractor-cucumber-framework": "^6.1.3"
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^6.0.5",
+    "cucumber-pretty": "6.0.0",
+    "eslint": "^6.8.0",
+    "node-testing-server": "^1.4.2",
+    "protractor": "^5.4.4",
+    "protractor-cucumber-framework": "^6.2.1"
   },
   "peerDependencies": {
-    "protractor": ">= 5.0.0"
+    "chai": ">=3.4.1",
+    "chai-as-promised": ">=5.2.0",
+    "cucumber": ">=1.0.0",
+    "protractor": ">=4.0.10",
+    "protractor-cucumber-framework": ">=0.6.0"
   }
 }
