@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.9
+
+**Updated lodash and ini dependencies**
+
+Details:
+
+- [bump lodash from 4.17.15 to 4.17.19](https://github.com/Marketionist/protractor-cucumber-steps/pull/84)
+- [bump ini from 1.3.5 to 1.3.7](https://github.com/Marketionist/protractor-cucumber-steps/pull/85)
+
 ## v1.3.8
 
 **Updated dev dependencies and installation script for Windows**
