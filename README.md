@@ -1,5 +1,9 @@
 # protractor-cucumber-steps
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+# This package is deprecated and will not be updated anymore as the Angular team announced that Protractor will be sunsetted at the end of 2022 - https://github.com/angular/protractor/issues/5502. Please consider switching to https://github.com/Marketionist/testcafe-cucumber-steps or https://github.com/Marketionist/webdriverio-cucumber-steps
+
 [![Build Status](https://travis-ci.org/Marketionist/protractor-cucumber-steps.svg?branch=master)](https://travis-ci.org/Marketionist/protractor-cucumber-steps)
 [![npm version](https://img.shields.io/npm/v/protractor-cucumber-steps.svg)](https://www.npmjs.com/package/protractor-cucumber-steps)
 [![NPM License](https://img.shields.io/npm/l/protractor-cucumber-steps.svg)](https://github.com/Marketionist/protractor-cucumber-steps/blob/master/LICENSE)
@@ -157,5 +161,5 @@ request and we will help you refine it along the way
 
 
 ## Thanks
-If this plugin was helpful for you, please give it a **★ Star** on
-[Github](https://github.com/Marketionist/protractor-cucumber-steps)
+If this package was helpful for you, please give it a **★ Star** on
+[GitHub](https://github.com/Marketionist/protractor-cucumber-steps)
