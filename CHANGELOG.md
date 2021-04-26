@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.3.11
+
+**Sunset protractor-cucumber-steps**
+
+Details:
+
+- [sunset protractor-cucumber-steps](https://github.com/Marketionist/protractor-cucumber-steps/pull/89) - due to the sunset of Protractor (see angular/protractor#5502 for more details). Please consider switching to [testcafe-cucumber-steps](https://github.com/Marketionist/testcafe-cucumber-steps) or [webdriverio-cucumber-steps](https://github.com/Marketionist/webdriverio-cucumber-steps)
+
+## v1.3.10
+
+**Add deprecation notice**
+
+Details:
+
+- [add deprecation notice](https://github.com/Marketionist/protractor-cucumber-steps/pull/88) - due to the sunset of Protractor (see angular/protractor#5502 for more details)
+
 ## v1.3.9
 
 **Updated lodash and ini dependencies**
